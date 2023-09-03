@@ -11491,11 +11491,11 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  185              	.set LCD_LCDPort__SLW, CYREG_PRT2_SLW
  186              	
  187              	/* Led */
- 188              	.set Led__0__INTTYPE, CYREG_PICU6_INTTYPE3
- 189              	.set Led__0__MASK, 0x08
- 190              	.set Led__0__PC, CYREG_PRT6_PC3
+ 188              	.set Led__0__INTTYPE, CYREG_PICU6_INTTYPE0
+ 189              	.set Led__0__MASK, 0x01
+ 190              	.set Led__0__PC, CYREG_PRT6_PC0
  191              	.set Led__0__PORT, 6
- 192              	.set Led__0__SHIFT, 3
+ 192              	.set Led__0__SHIFT, 0
  193              	.set Led__AG, CYREG_PRT6_AG
  194              	.set Led__AMUX, CYREG_PRT6_AMUX
  195              	.set Led__BIE, CYREG_PRT6_BIE
@@ -11510,7 +11510,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  204              	.set Led__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
  205              	.set Led__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
  206              	.set Led__LCD_EN, CYREG_PRT6_LCD_EN
- 207              	.set Led__MASK, 0x08
+ 207              	.set Led__MASK, 0x01
  208              	.set Led__PORT, 6
  209              	.set Led__PRT, CYREG_PRT6_PRT
  210              	.set Led__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
@@ -11524,7 +11524,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  215              	.set Led__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
  216              	.set Led__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
  217              	.set Led__PS, CYREG_PRT6_PS
- 218              	.set Led__SHIFT, 3
+ 218              	.set Led__SHIFT, 0
  219              	.set Led__SLW, CYREG_PRT6_SLW
  220              	
  221              	/* PWM */
