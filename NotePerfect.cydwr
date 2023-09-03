@@ -331,6 +331,7 @@
     </Group>
     <Group key="Pin">
       <Data key="29684ce7-c60c-487b-96f8-75581d1a9952" value="Led" />
+      <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="AnalogIn" />
       <Data key="aa1201d8-c56c-4b71-8830-461f942119d4/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_LCDPort" />
       <Data key="cc3bcd7e-5dc0-48ea-9bf6-6aa082be1ada" value="VoltInput" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="PWM_Out" />
@@ -3418,7 +3419,12 @@
   <Group key="Pin2">
     <Group key="29684ce7-c60c-487b-96f8-75581d1a9952">
       <Group key="0">
-        <Data key="Port Format" value="6,6" />
+        <Data key="Port Format" value="6,3" />
+      </Group>
+    </Group>
+    <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
+      <Group key="0">
+        <Data key="Port Format" value="3,3" />
       </Group>
     </Group>
     <Group key="aa1201d8-c56c-4b71-8830-461f942119d4/ed092b9b-d398-4703-be89-cebf998501f6">

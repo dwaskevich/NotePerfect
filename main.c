@@ -73,17 +73,18 @@
 #define DIV                         7
 
 /* Number of "NotePerfect" control voltages per volt */
-#define NUMBER_NOTES_PER_VOLT       (8u)
+#define NUMBER_NOTES_PER_VOLT       (12u)
 
 /* Maximum control voltage */
 #define MAX_CONTROL_VOLTAGE         (5u)
 
-/* Total number of "NotePerfect" quantized values (40) */
-#define NUMBER_NOTE_PERFECT_VOLTAGES (NUMBER_NOTES_PER_VOLT * MAX_CONTROL_VOLTAGE)
+/* Total number of "NotePerfect" quantized steps/values (60) */
+#define NUMBER_NOTE_PERFECT_STEPS (NUMBER_NOTES_PER_VOLT * MAX_CONTROL_VOLTAGE)
 
 /* NotePerfect step size (in mV) */
-#define NOTEPERFECT_STEP_SIZE_MV    ((MAX_CONTROL_VOLTAGE * 1000) / NUMBER_NOTE_PERFECT_VOLTAGES)
+#define NOTEPERFECT_STEP_SIZE_MV    ((MAX_CONTROL_VOLTAGE * 1000) / NUMBER_NOTE_PERFECT_STEPS)
 
+/* NotePerfect step number lookup table */
 uint16_t PWM_Lookup[] = {0, 83, 167, 250, 333, 417, 500, 583, 667, 750, 833, 917, 1000,
                             1083, 1167, 1250, 1333, 1417, 1500, 1583, 1667, 1750, 1833, 1917, 2000,
                             2083, 2167, 2250, 2333, 2417, 2500, 2583, 2667, 2750, 2833, 2917, 3000,
@@ -117,8 +118,8 @@ int main(void)
     uint8 index = 0;
     
     /* Variables to calculate and hold NotePerfect DAC value */
-    int32 notePerfectValue = 0;
-    int32 remainder = 0;
+    uint32 notePerfectValue = 0;
+    uint32 remainder = 0;
     
     /* Character array to hold the micro volts*/
     char displayStr[15] = {'\0'};        
@@ -156,26 +157,9 @@ int main(void)
     /* Average count is equal to one single sample for first ADC reading */
     averageCounts = result;
     
-    /* start DAC and Opamp */
-    VDAC_Start();               
+    /* start Opamp and PWM */
     Opamp_Start();
     PWM_Start();
-    
-    while(1)
-    {
-        for(uint16_t i = 0; i < 60; i++)
-        {
-//            VDAC_SetValue((i * 8) - 0);
-            PWM_WriteCompare(PWM_Lookup[i]);
-            sprintf(displayStr,"%3d", i);
-            LCD_Position(0,13);
-            LCD_PrintString(displayStr);
-            sprintf(displayStr,"%4d", PWM_Lookup[i]);
-            LCD_Position(1,12);
-            LCD_PrintString(displayStr);
-            CyDelay(3000);
-        }
-    }
     
     while(1)
     {
@@ -220,27 +204,22 @@ int main(void)
         }
         milliVolts = ADC_CountsTo_mVolts(averageCounts);
         
-        notePerfectValue = (milliVolts << 6) / 1000;
-        remainder = notePerfectValue % 8;
-        notePerfectValue = notePerfectValue >> 3;
-        if(remainder >= 4)
+        notePerfectValue = (milliVolts / NOTEPERFECT_STEP_SIZE_MV);
+        remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV;
+        if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2)
             notePerfectValue += 1;
-        
-        VDAC_SetValue((uint8) notePerfectValue << 3);
-//        sprintf(displayStr,"%4ld", notePerfectValue * 125);
-        sprintf(displayStr,"%4ld", notePerfectValue * 8 * 16);
+        PWM_WriteCompare(PWM_Lookup[notePerfectValue]);
+        sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
         LCD_Position(1,12);
         LCD_PrintString(displayStr);
             
         /* Convert milli volts to string and display on the LCD */
         sprintf(displayStr,"%4ld",milliVolts);
-
         LCD_Position(1,0);
         LCD_PrintString(displayStr);
         
         /* Convert notePerfectValue to string and display on the LCD */
-        sprintf(displayStr,"%2ld",notePerfectValue);
-
+        sprintf(displayStr,"%2ld", notePerfectValue);
         LCD_Position(0,14);
         LCD_PrintString(displayStr);
         

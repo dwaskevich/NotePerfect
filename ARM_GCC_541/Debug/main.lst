@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 1
   55 003c C409     		.short	2500
   56 003e 170A     		.short	2583
   57 0040 6B0A     		.short	2667
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 2
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 2
 
 
   58 0042 BE0A     		.short	2750
@@ -102,25 +102,30 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 1
   92      3D00
   93 0016 0000     		.align	2
   94              	.LC2:
-  95 0018 25336400 		.ascii	"%3d\000"
+  95 0018 25346400 		.ascii	"%4d\000"
   96              		.align	2
   97              	.LC3:
-  98 001c 25346400 		.ascii	"%4d\000"
-  99              		.section	.text.main,"ax",%progbits
- 100              		.align	2
- 101              		.global	main
- 102              		.thumb
- 103              		.thumb_func
- 104              		.type	main, %function
- 105              	main:
- 106              	.LFB64:
- 107              		.file 1 "main.c"
+  98 001c 25346C64 		.ascii	"%4ld\000"
+  98      00
+  99 0021 000000   		.align	2
+ 100              	.LC4:
+ 101 0024 25326C64 		.ascii	"%2ld\000"
+ 101      00
+ 102              		.section	.text.main,"ax",%progbits
+ 103              		.align	2
+ 104              		.global	main
+ 105              		.thumb
+ 106              		.thumb_func
+ 107              		.type	main, %function
+ 108              	main:
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 3
+
+
+ 109              	.LFB64:
+ 110              		.file 1 "main.c"
    1:main.c        **** ﻿/******************************************************************************
    2:main.c        **** * File Name: Main.c
    3:main.c        **** *
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 3
-
-
    4:main.c        **** * Version 1.1
    5:main.c        **** *
    6:main.c        **** * Description:
@@ -173,14 +178,14 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 1
   53:main.c        **** * configured with 20 bit of resolution to measure the input voltage with 
   54:main.c        **** * higher accuracy. Moving average filter of 128 samples is applied to the ADC
   55:main.c        **** * conversion result before displaying the result in micro volts on the LCD. 
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 4
+
+
   56:main.c        **** *
   57:main.c        **** * Hardware connection on the Kit
   58:main.c        **** * Potentiometer - PORT 6[5] 
   59:main.c        **** * LCD - PORT 2[0..6]
   60:main.c        **** *******************************************************************************/
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 4
-
-
   61:main.c        **** #include <device.h>
   62:main.c        **** #include "stdio.h"
   63:main.c        **** #include "stdlib.h"
@@ -196,1002 +201,1152 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 1
   73:main.c        **** #define DIV                         7
   74:main.c        **** 
   75:main.c        **** /* Number of "NotePerfect" control voltages per volt */
-  76:main.c        **** #define NUMBER_NOTES_PER_VOLT       (8u)
+  76:main.c        **** #define NUMBER_NOTES_PER_VOLT       (12u)
   77:main.c        **** 
   78:main.c        **** /* Maximum control voltage */
   79:main.c        **** #define MAX_CONTROL_VOLTAGE         (5u)
   80:main.c        **** 
-  81:main.c        **** /* Total number of "NotePerfect" quantized values (40) */
-  82:main.c        **** #define NUMBER_NOTE_PERFECT_VOLTAGES (NUMBER_NOTES_PER_VOLT * MAX_CONTROL_VOLTAGE)
+  81:main.c        **** /* Total number of "NotePerfect" quantized steps/values (60) */
+  82:main.c        **** #define NUMBER_NOTE_PERFECT_STEPS (NUMBER_NOTES_PER_VOLT * MAX_CONTROL_VOLTAGE)
   83:main.c        **** 
   84:main.c        **** /* NotePerfect step size (in mV) */
-  85:main.c        **** #define NOTEPERFECT_STEP_SIZE_MV    ((MAX_CONTROL_VOLTAGE * 1000) / NUMBER_NOTE_PERFECT_VOLTAGES)
+  85:main.c        **** #define NOTEPERFECT_STEP_SIZE_MV    ((MAX_CONTROL_VOLTAGE * 1000) / NUMBER_NOTE_PERFECT_STEPS)
   86:main.c        **** 
-  87:main.c        **** uint16_t PWM_Lookup[] = {0, 83, 167, 250, 333, 417, 500, 583, 667, 750, 833, 917, 1000,
-  88:main.c        ****                             1083, 1167, 1250, 1333, 1417, 1500, 1583, 1667, 1750, 1833, 1917, 2000,
-  89:main.c        ****                             2083, 2167, 2250, 2333, 2417, 2500, 2583, 2667, 2750, 2833, 2917, 3000,
-  90:main.c        ****                             3083, 3167, 3250, 3333, 3417, 3500, 3583, 3667, 3750, 3833, 3917, 4000,
-  91:main.c        ****                             4083, 4167, 4250, 4333, 4417, 4500, 4583, 4667, 4750, 4833, 4917, 5000}
-  92:main.c        **** 
-  93:main.c        **** int main(void)
-  94:main.c        **** {
- 108              		.loc 1 94 0
- 109              		.cfi_startproc
- 110              		@ args = 0, pretend = 0, frame = 568
- 111              		@ frame_needed = 1, uses_anonymous_args = 0
- 112 0000 80B5     		push	{r7, lr}
- 113              		.cfi_def_cfa_offset 8
- 114              		.cfi_offset 7, -8
- 115              		.cfi_offset 14, -4
- 116 0002 ADF50E7D 		sub	sp, sp, #568
- 117              		.cfi_def_cfa_offset 576
- 118 0006 00AF     		add	r7, sp, #0
- 119              		.cfi_def_cfa_register 7
-  95:main.c        ****     uint8 i;
-  96:main.c        ****     
-  97:main.c        ****     /* Array to store ADC count for moving average filter */
-  98:main.c        ****     int32 adcCounts[MAX_SAMPLE] = {0};
- 120              		.loc 1 98 0
- 121 0008 07F11403 		add	r3, r7, #20
- 122 000c 1846     		mov	r0, r3
- 123 000e 4FF40073 		mov	r3, #512
- 124 0012 1A46     		mov	r2, r3
- 125 0014 0021     		movs	r1, #0
- 126 0016 FFF7FEFF 		bl	memset
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 5
+  87:main.c        **** /* NotePerfect step number lookup table */
+  88:main.c        **** uint16_t PWM_Lookup[] = {0, 83, 167, 250, 333, 417, 500, 583, 667, 750, 833, 917, 1000,
+  89:main.c        ****                             1083, 1167, 1250, 1333, 1417, 1500, 1583, 1667, 1750, 1833, 1917, 2000,
+  90:main.c        ****                             2083, 2167, 2250, 2333, 2417, 2500, 2583, 2667, 2750, 2833, 2917, 3000,
+  91:main.c        ****                             3083, 3167, 3250, 3333, 3417, 3500, 3583, 3667, 3750, 3833, 3917, 4000,
+  92:main.c        ****                             4083, 4167, 4250, 4333, 4417, 4500, 4583, 4667, 4750, 4833, 4917, 5000}
+  93:main.c        **** 
+  94:main.c        **** int main(void)
+  95:main.c        **** {
+ 111              		.loc 1 95 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 568
+ 114              		@ frame_needed = 1, uses_anonymous_args = 0
+ 115 0000 80B5     		push	{r7, lr}
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 7, -8
+ 118              		.cfi_offset 14, -4
+ 119 0002 ADF50E7D 		sub	sp, sp, #568
+ 120              		.cfi_def_cfa_offset 576
+ 121 0006 00AF     		add	r7, sp, #0
+ 122              		.cfi_def_cfa_register 7
+  96:main.c        ****     uint8 i;
+  97:main.c        ****     
+  98:main.c        ****     /* Array to store ADC count for moving average filter */
+  99:main.c        ****     int32 adcCounts[MAX_SAMPLE] = {0};
+ 123              		.loc 1 99 0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 5
 
 
-  99:main.c        ****     
- 100:main.c        ****     /* Variable to hold ADC conversion result */
- 101:main.c        ****     int32 result = 0;
- 127              		.loc 1 101 0
- 128 001a 0023     		movs	r3, #0
- 129 001c C7F83032 		str	r3, [r7, #560]
- 102:main.c        ****     
- 103:main.c        ****     /* Variable to store accumulated sample for filter array */
- 104:main.c        ****     int32 sum = 0;
- 130              		.loc 1 104 0
- 131 0020 0023     		movs	r3, #0
- 132 0022 C7F82C32 		str	r3, [r7, #556]
- 105:main.c        ****     
- 106:main.c        ****     /* Variable for testing sharp change in signal slope */
- 107:main.c        ****     int16 diff = 0;
- 133              		.loc 1 107 0
- 134 0026 0023     		movs	r3, #0
- 135 0028 A7F82A32 		strh	r3, [r7, #554]	@ movhi
- 108:main.c        ****     
- 109:main.c        ****     /* Variable to hold the result in milli volts converted from filtered 
- 110:main.c        ****      * ADC counts */
- 111:main.c        ****     int32 milliVolts = 0;
- 136              		.loc 1 111 0
- 137 002c 0023     		movs	r3, #0
- 138 002e C7F82432 		str	r3, [r7, #548]
- 112:main.c        **** 	
- 113:main.c        ****     /* Variable to hold the moving average filtered value */
- 114:main.c        ****     int32 averageCounts = 0;
- 139              		.loc 1 114 0
- 140 0032 0023     		movs	r3, #0
- 141 0034 C7F82032 		str	r3, [r7, #544]
- 115:main.c        **** 	
- 116:main.c        ****     /* Index variable to work on the filter array */
- 117:main.c        ****     uint8 index = 0;
- 142              		.loc 1 117 0
- 143 0038 0023     		movs	r3, #0
- 144 003a 87F81F32 		strb	r3, [r7, #543]
- 118:main.c        ****     
- 119:main.c        ****     /* Variables to calculate and hold NotePerfect DAC value */
- 120:main.c        ****     int32 notePerfectValue = 0;
- 145              		.loc 1 120 0
- 146 003e 0023     		movs	r3, #0
- 147 0040 C7F81832 		str	r3, [r7, #536]
- 121:main.c        ****     int32 remainder = 0;
+ 124 0008 07F11403 		add	r3, r7, #20
+ 125 000c 1846     		mov	r0, r3
+ 126 000e 4FF40073 		mov	r3, #512
+ 127 0012 1A46     		mov	r2, r3
+ 128 0014 0021     		movs	r1, #0
+ 129 0016 FFF7FEFF 		bl	memset
+ 100:main.c        ****     
+ 101:main.c        ****     /* Variable to hold ADC conversion result */
+ 102:main.c        ****     int32 result = 0;
+ 130              		.loc 1 102 0
+ 131 001a 0023     		movs	r3, #0
+ 132 001c C7F82032 		str	r3, [r7, #544]
+ 103:main.c        ****     
+ 104:main.c        ****     /* Variable to store accumulated sample for filter array */
+ 105:main.c        ****     int32 sum = 0;
+ 133              		.loc 1 105 0
+ 134 0020 0023     		movs	r3, #0
+ 135 0022 C7F83032 		str	r3, [r7, #560]
+ 106:main.c        ****     
+ 107:main.c        ****     /* Variable for testing sharp change in signal slope */
+ 108:main.c        ****     int16 diff = 0;
+ 136              		.loc 1 108 0
+ 137 0026 0023     		movs	r3, #0
+ 138 0028 A7F81E32 		strh	r3, [r7, #542]	@ movhi
+ 109:main.c        ****     
+ 110:main.c        ****     /* Variable to hold the result in milli volts converted from filtered 
+ 111:main.c        ****      * ADC counts */
+ 112:main.c        ****     int32 milliVolts = 0;
+ 139              		.loc 1 112 0
+ 140 002c 0023     		movs	r3, #0
+ 141 002e C7F81832 		str	r3, [r7, #536]
+ 113:main.c        **** 	
+ 114:main.c        ****     /* Variable to hold the moving average filtered value */
+ 115:main.c        ****     int32 averageCounts = 0;
+ 142              		.loc 1 115 0
+ 143 0032 0023     		movs	r3, #0
+ 144 0034 C7F82C32 		str	r3, [r7, #556]
+ 116:main.c        **** 	
+ 117:main.c        ****     /* Index variable to work on the filter array */
+ 118:main.c        ****     uint8 index = 0;
+ 145              		.loc 1 118 0
+ 146 0038 0023     		movs	r3, #0
+ 147 003a 87F82B32 		strb	r3, [r7, #555]
+ 119:main.c        ****     
+ 120:main.c        ****     /* Variables to calculate and hold NotePerfect DAC value */
+ 121:main.c        ****     uint32 notePerfectValue = 0;
  148              		.loc 1 121 0
- 149 0044 0023     		movs	r3, #0
- 150 0046 C7F81432 		str	r3, [r7, #532]
- 122:main.c        ****     
- 123:main.c        ****     /* Character array to hold the micro volts*/
- 124:main.c        ****     char displayStr[15] = {'\0'};        
- 151              		.loc 1 124 0
- 152 004a 3B1D     		adds	r3, r7, #4
- 153 004c 1A46     		mov	r2, r3
- 154 004e 0023     		movs	r3, #0
- 155 0050 1360     		str	r3, [r2]
- 156 0052 5360     		str	r3, [r2, #4]
- 157 0054 9360     		str	r3, [r2, #8]
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 6
+ 149 003e 0023     		movs	r3, #0
+ 150 0040 C7F82432 		str	r3, [r7, #548]
+ 122:main.c        ****     uint32 remainder = 0;
+ 151              		.loc 1 122 0
+ 152 0044 0023     		movs	r3, #0
+ 153 0046 C7F81432 		str	r3, [r7, #532]
+ 123:main.c        ****     
+ 124:main.c        ****     /* Character array to hold the micro volts*/
+ 125:main.c        ****     char displayStr[15] = {'\0'};        
+ 154              		.loc 1 125 0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 6
 
 
- 158 0056 C2F80B30 		str	r3, [r2, #11]	@ unaligned
- 125:main.c        **** 
- 126:main.c        ****     CYGlobalIntEnable;
- 159              		.loc 1 126 0
- 160              		.syntax unified
- 161              	@ 126 "main.c" 1
- 162 005a 62B6     		CPSIE   i
- 163              	@ 0 "" 2
- 127:main.c        **** 
- 128:main.c        ****     /* Start ADC and start conversion */
- 129:main.c        ****     ADC_Start();
- 164              		.loc 1 129 0
- 165              		.thumb
- 166              		.syntax unified
- 167 005c FFF7FEFF 		bl	ADC_Start
- 130:main.c        ****     ADC_StartConvert();
- 168              		.loc 1 130 0
- 169 0060 FFF7FEFF 		bl	ADC_StartConvert
- 131:main.c        **** 
- 132:main.c        ****     /* Start LCD and set position */
- 133:main.c        ****     LCD_Start();
- 170              		.loc 1 133 0
- 171 0064 FFF7FEFF 		bl	LCD_Start
- 134:main.c        ****     LCD_Position(0,0);
- 172              		.loc 1 134 0
- 173 0068 0021     		movs	r1, #0
- 174 006a 0020     		movs	r0, #0
- 175 006c FFF7FEFF 		bl	LCD_Position
- 135:main.c        ****     LCD_PrintString("ADC    Step = ");
- 176              		.loc 1 135 0
- 177 0070 3D48     		ldr	r0, .L7
- 178 0072 FFF7FEFF 		bl	LCD_PrintString
- 136:main.c        **** 
- 137:main.c        ****     /* Print mV unit on the LCD */
- 138:main.c        ****     LCD_Position(1,4);
- 179              		.loc 1 138 0
- 180 0076 0421     		movs	r1, #4
- 181 0078 0120     		movs	r0, #1
- 182 007a FFF7FEFF 		bl	LCD_Position
- 139:main.c        ****     LCD_PutChar('m');
- 183              		.loc 1 139 0
- 184 007e 6D20     		movs	r0, #109
- 185 0080 FFF7FEFF 		bl	LCD_PutChar
- 140:main.c        ****     LCD_PutChar('V');
+ 155 004a 3B1D     		adds	r3, r7, #4
+ 156 004c 1A46     		mov	r2, r3
+ 157 004e 0023     		movs	r3, #0
+ 158 0050 1360     		str	r3, [r2]
+ 159 0052 5360     		str	r3, [r2, #4]
+ 160 0054 9360     		str	r3, [r2, #8]
+ 161 0056 C2F80B30 		str	r3, [r2, #11]	@ unaligned
+ 126:main.c        **** 
+ 127:main.c        ****     CYGlobalIntEnable;
+ 162              		.loc 1 127 0
+ 163              		.syntax unified
+ 164              	@ 127 "main.c" 1
+ 165 005a 62B6     		CPSIE   i
+ 166              	@ 0 "" 2
+ 128:main.c        **** 
+ 129:main.c        ****     /* Start ADC and start conversion */
+ 130:main.c        ****     ADC_Start();
+ 167              		.loc 1 130 0
+ 168              		.thumb
+ 169              		.syntax unified
+ 170 005c FFF7FEFF 		bl	ADC_Start
+ 131:main.c        ****     ADC_StartConvert();
+ 171              		.loc 1 131 0
+ 172 0060 FFF7FEFF 		bl	ADC_StartConvert
+ 132:main.c        **** 
+ 133:main.c        ****     /* Start LCD and set position */
+ 134:main.c        ****     LCD_Start();
+ 173              		.loc 1 134 0
+ 174 0064 FFF7FEFF 		bl	LCD_Start
+ 135:main.c        ****     LCD_Position(0,0);
+ 175              		.loc 1 135 0
+ 176 0068 0021     		movs	r1, #0
+ 177 006a 0020     		movs	r0, #0
+ 178 006c FFF7FEFF 		bl	LCD_Position
+ 136:main.c        ****     LCD_PrintString("ADC    Step = ");
+ 179              		.loc 1 136 0
+ 180 0070 7E48     		ldr	r0, .L10
+ 181 0072 FFF7FEFF 		bl	LCD_PrintString
+ 137:main.c        **** 
+ 138:main.c        ****     /* Print mV unit on the LCD */
+ 139:main.c        ****     LCD_Position(1,4);
+ 182              		.loc 1 139 0
+ 183 0076 0421     		movs	r1, #4
+ 184 0078 0120     		movs	r0, #1
+ 185 007a FFF7FEFF 		bl	LCD_Position
+ 140:main.c        ****     LCD_PutChar('m');
  186              		.loc 1 140 0
- 187 0084 5620     		movs	r0, #86
- 188 0086 FFF7FEFF 		bl	LCD_PutChar
- 141:main.c        ****     LCD_Position(1,7);
+ 187 007e 6D20     		movs	r0, #109
+ 188 0080 FFF7FEFF 		bl	LCD_PutChar
+ 141:main.c        ****     LCD_PutChar('V');
  189              		.loc 1 141 0
- 190 008a 0721     		movs	r1, #7
- 191 008c 0120     		movs	r0, #1
- 192 008e FFF7FEFF 		bl	LCD_Position
- 142:main.c        ****     LCD_PrintString("DAC =");
- 193              		.loc 1 142 0
- 194 0092 3648     		ldr	r0, .L7+4
- 195 0094 FFF7FEFF 		bl	LCD_PrintString
- 143:main.c        ****     
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 7
+ 190 0084 5620     		movs	r0, #86
+ 191 0086 FFF7FEFF 		bl	LCD_PutChar
+ 142:main.c        ****     LCD_Position(1,7);
+ 192              		.loc 1 142 0
+ 193 008a 0721     		movs	r1, #7
+ 194 008c 0120     		movs	r0, #1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 7
 
 
- 144:main.c        ****     /* Read one sample from the ADC and initialize the filter */
- 145:main.c        ****     ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
- 196              		.loc 1 145 0
- 197 0098 0020     		movs	r0, #0
- 198 009a FFF7FEFF 		bl	ADC_IsEndConversion
- 146:main.c        ****     result = ADC_GetResult32();
+ 195 008e FFF7FEFF 		bl	LCD_Position
+ 143:main.c        ****     LCD_PrintString("DAC =");
+ 196              		.loc 1 143 0
+ 197 0092 7748     		ldr	r0, .L10+4
+ 198 0094 FFF7FEFF 		bl	LCD_PrintString
+ 144:main.c        ****     
+ 145:main.c        ****     /* Read one sample from the ADC and initialize the filter */
+ 146:main.c        ****     ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
  199              		.loc 1 146 0
- 200 009e FFF7FEFF 		bl	ADC_GetResult32
- 201 00a2 C7F83002 		str	r0, [r7, #560]
- 147:main.c        ****     
- 148:main.c        ****     for(i = 0; i < MAX_SAMPLE; i++)
- 202              		.loc 1 148 0
- 203 00a6 0023     		movs	r3, #0
- 204 00a8 87F83732 		strb	r3, [r7, #567]
- 205 00ac 0CE0     		b	.L2
- 206              	.L3:
+ 200 0098 0020     		movs	r0, #0
+ 201 009a FFF7FEFF 		bl	ADC_IsEndConversion
+ 147:main.c        ****     result = ADC_GetResult32();
+ 202              		.loc 1 147 0
+ 203 009e FFF7FEFF 		bl	ADC_GetResult32
+ 204 00a2 C7F82002 		str	r0, [r7, #544]
+ 148:main.c        ****     
+ 149:main.c        ****     for(i = 0; i < MAX_SAMPLE; i++)
+ 205              		.loc 1 149 0
+ 206 00a6 0023     		movs	r3, #0
+ 207 00a8 87F83732 		strb	r3, [r7, #567]
+ 208 00ac 0CE0     		b	.L2
+ 209              	.L3:
+ 150:main.c        ****     {
+ 151:main.c        ****         adcCounts[i] = result;
+ 210              		.loc 1 151 0 discriminator 3
+ 211 00ae 97F83722 		ldrb	r2, [r7, #567]	@ zero_extendqisi2
+ 212 00b2 07F11403 		add	r3, r7, #20
+ 213 00b6 D7F82012 		ldr	r1, [r7, #544]
+ 214 00ba 43F82210 		str	r1, [r3, r2, lsl #2]
  149:main.c        ****     {
- 150:main.c        ****         adcCounts[i] = result;
- 207              		.loc 1 150 0 discriminator 3
- 208 00ae 97F83722 		ldrb	r2, [r7, #567]	@ zero_extendqisi2
- 209 00b2 07F11403 		add	r3, r7, #20
- 210 00b6 D7F83012 		ldr	r1, [r7, #560]
- 211 00ba 43F82210 		str	r1, [r3, r2, lsl #2]
- 148:main.c        ****     {
- 212              		.loc 1 148 0 discriminator 3
- 213 00be 97F83732 		ldrb	r3, [r7, #567]	@ zero_extendqisi2
- 214 00c2 0133     		adds	r3, r3, #1
- 215 00c4 87F83732 		strb	r3, [r7, #567]
- 216              	.L2:
- 148:main.c        ****     {
- 217              		.loc 1 148 0 is_stmt 0 discriminator 1
- 218 00c8 97F93732 		ldrsb	r3, [r7, #567]
- 219 00cc 002B     		cmp	r3, #0
- 220 00ce EEDA     		bge	.L3
- 151:main.c        ****     }
- 152:main.c        ****     
- 153:main.c        ****     /* Store sum of 128 samples*/
- 154:main.c        ****     sum = result << DIV;
- 221              		.loc 1 154 0 is_stmt 1
- 222 00d0 D7F83032 		ldr	r3, [r7, #560]
- 223 00d4 DB01     		lsls	r3, r3, #7
- 224 00d6 C7F82C32 		str	r3, [r7, #556]
- 155:main.c        ****     
- 156:main.c        ****     /* Average count is equal to one single sample for first ADC reading */
- 157:main.c        ****     averageCounts = result;
- 225              		.loc 1 157 0
- 226 00da D7F83032 		ldr	r3, [r7, #560]
- 227 00de C7F82032 		str	r3, [r7, #544]
- 158:main.c        ****     
- 159:main.c        ****     /* start DAC and Opamp */
- 160:main.c        ****     VDAC_Start();               
- 228              		.loc 1 160 0
- 229 00e2 FFF7FEFF 		bl	VDAC_Start
+ 215              		.loc 1 149 0 discriminator 3
+ 216 00be 97F83732 		ldrb	r3, [r7, #567]	@ zero_extendqisi2
+ 217 00c2 0133     		adds	r3, r3, #1
+ 218 00c4 87F83732 		strb	r3, [r7, #567]
+ 219              	.L2:
+ 149:main.c        ****     {
+ 220              		.loc 1 149 0 is_stmt 0 discriminator 1
+ 221 00c8 97F93732 		ldrsb	r3, [r7, #567]
+ 222 00cc 002B     		cmp	r3, #0
+ 223 00ce EEDA     		bge	.L3
+ 152:main.c        ****     }
+ 153:main.c        ****     
+ 154:main.c        ****     /* Store sum of 128 samples*/
+ 155:main.c        ****     sum = result << DIV;
+ 224              		.loc 1 155 0 is_stmt 1
+ 225 00d0 D7F82032 		ldr	r3, [r7, #544]
+ 226 00d4 DB01     		lsls	r3, r3, #7
+ 227 00d6 C7F83032 		str	r3, [r7, #560]
+ 156:main.c        ****     
+ 157:main.c        ****     /* Average count is equal to one single sample for first ADC reading */
+ 158:main.c        ****     averageCounts = result;
+ 228              		.loc 1 158 0
+ 229 00da D7F82032 		ldr	r3, [r7, #544]
+ 230 00de C7F82C32 		str	r3, [r7, #556]
+ 159:main.c        ****     
+ 160:main.c        ****     /* start Opamp and PWM */
  161:main.c        ****     Opamp_Start();
- 230              		.loc 1 161 0
- 231 00e6 FFF7FEFF 		bl	Opamp_Start
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 8
+
+
+ 231              		.loc 1 161 0
+ 232 00e2 FFF7FEFF 		bl	Opamp_Start
  162:main.c        ****     PWM_Start();
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 8
-
-
- 232              		.loc 1 162 0
- 233 00ea FFF7FEFF 		bl	PWM_Start
- 234              	.L6:
- 235              	.LBB2:
+ 233              		.loc 1 162 0
+ 234 00e6 FFF7FEFF 		bl	PWM_Start
+ 235              	.L9:
  163:main.c        ****     
  164:main.c        ****     while(1)
  165:main.c        ****     {
- 166:main.c        ****         for(uint16_t i = 0; i < 60; i++)
+ 166:main.c        ****         ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
  236              		.loc 1 166 0
- 237 00ee 0023     		movs	r3, #0
- 238 00f0 A7F83432 		strh	r3, [r7, #564]	@ movhi
- 239 00f4 32E0     		b	.L4
- 240              	.L5:
- 167:main.c        ****         {
- 168:main.c        **** //            VDAC_SetValue((i * 8) - 0);
- 169:main.c        ****             PWM_WriteCompare(PWM_Lookup[i]);
- 241              		.loc 1 169 0 discriminator 3
- 242 00f6 B7F83432 		ldrh	r3, [r7, #564]
- 243 00fa 1D4A     		ldr	r2, .L7+8
- 244 00fc 32F81330 		ldrh	r3, [r2, r3, lsl #1]
- 245 0100 1846     		mov	r0, r3
- 246 0102 FFF7FEFF 		bl	PWM_WriteCompare
- 170:main.c        ****             sprintf(displayStr,"%3d", i);
- 247              		.loc 1 170 0 discriminator 3
- 248 0106 B7F83422 		ldrh	r2, [r7, #564]
- 249 010a 3B1D     		adds	r3, r7, #4
- 250 010c 1949     		ldr	r1, .L7+12
- 251 010e 1846     		mov	r0, r3
- 252 0110 FFF7FEFF 		bl	sprintf
- 171:main.c        ****             LCD_Position(0,13);
- 253              		.loc 1 171 0 discriminator 3
- 254 0114 0D21     		movs	r1, #13
- 255 0116 0020     		movs	r0, #0
- 256 0118 FFF7FEFF 		bl	LCD_Position
- 172:main.c        ****             LCD_PrintString(displayStr);
- 257              		.loc 1 172 0 discriminator 3
- 258 011c 3B1D     		adds	r3, r7, #4
- 259 011e 1846     		mov	r0, r3
- 260 0120 FFF7FEFF 		bl	LCD_PrintString
- 173:main.c        ****             sprintf(displayStr,"%4d", PWM_Lookup[i]);
- 261              		.loc 1 173 0 discriminator 3
- 262 0124 B7F83432 		ldrh	r3, [r7, #564]
- 263 0128 114A     		ldr	r2, .L7+8
- 264 012a 32F81330 		ldrh	r3, [r2, r3, lsl #1]
- 265 012e 1A46     		mov	r2, r3
- 266 0130 3B1D     		adds	r3, r7, #4
- 267 0132 1149     		ldr	r1, .L7+16
- 268 0134 1846     		mov	r0, r3
- 269 0136 FFF7FEFF 		bl	sprintf
- 174:main.c        ****             LCD_Position(1,12);
- 270              		.loc 1 174 0 discriminator 3
- 271 013a 0C21     		movs	r1, #12
- 272 013c 0120     		movs	r0, #1
- 273 013e FFF7FEFF 		bl	LCD_Position
- 175:main.c        ****             LCD_PrintString(displayStr);
- 274              		.loc 1 175 0 discriminator 3
- 275 0142 3B1D     		adds	r3, r7, #4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 9
+ 237 00ea 0020     		movs	r0, #0
+ 238 00ec FFF7FEFF 		bl	ADC_IsEndConversion
+ 167:main.c        ****         result = ADC_GetResult32();
+ 239              		.loc 1 167 0
+ 240 00f0 FFF7FEFF 		bl	ADC_GetResult32
+ 241 00f4 C7F82002 		str	r0, [r7, #544]
+ 168:main.c        ****         
+ 169:main.c        ****         diff = abs(averageCounts - result);
+ 242              		.loc 1 169 0
+ 243 00f8 D7F82C22 		ldr	r2, [r7, #556]
+ 244 00fc D7F82032 		ldr	r3, [r7, #544]
+ 245 0100 D31A     		subs	r3, r2, r3
+ 246 0102 002B     		cmp	r3, #0
+ 247 0104 B8BF     		it	lt
+ 248 0106 5B42     		rsblt	r3, r3, #0
+ 249 0108 A7F81E32 		strh	r3, [r7, #542]	@ movhi
+ 170:main.c        **** 
+ 171:main.c        ****         /* If sharp change in the signal then reset the filter with the new 
+ 172:main.c        ****          * signal value */
+ 173:main.c        ****         if(diff > SIGNAL_SLOPE)
+ 250              		.loc 1 173 0
+ 251 010c B7F91E32 		ldrsh	r3, [r7, #542]
+ 252 0110 B3F57A7F 		cmp	r3, #1000
+ 253 0114 21DD     		ble	.L4
+ 174:main.c        ****         {
+ 175:main.c        ****             for(i = 0; i < MAX_SAMPLE; i++)
+ 254              		.loc 1 175 0
+ 255 0116 0023     		movs	r3, #0
+ 256 0118 87F83732 		strb	r3, [r7, #567]
+ 257 011c 0CE0     		b	.L5
+ 258              	.L6:
+ 176:main.c        ****             {
+ 177:main.c        ****                 adcCounts[i] = result;
+ 259              		.loc 1 177 0 discriminator 3
+ 260 011e 97F83722 		ldrb	r2, [r7, #567]	@ zero_extendqisi2
+ 261 0122 07F11403 		add	r3, r7, #20
+ 262 0126 D7F82012 		ldr	r1, [r7, #544]
+ 263 012a 43F82210 		str	r1, [r3, r2, lsl #2]
+ 175:main.c        ****             {
+ 264              		.loc 1 175 0 discriminator 3
+ 265 012e 97F83732 		ldrb	r3, [r7, #567]	@ zero_extendqisi2
+ 266 0132 0133     		adds	r3, r3, #1
+ 267 0134 87F83732 		strb	r3, [r7, #567]
+ 268              	.L5:
+ 175:main.c        ****             {
+ 269              		.loc 1 175 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 9
 
 
- 276 0144 1846     		mov	r0, r3
- 277 0146 FFF7FEFF 		bl	LCD_PrintString
- 176:main.c        ****             CyDelay(3000);
- 278              		.loc 1 176 0 discriminator 3
- 279 014a 40F6B830 		movw	r0, #3000
- 280 014e FFF7FEFF 		bl	CyDelay
- 166:main.c        ****         {
- 281              		.loc 1 166 0 discriminator 3
- 282 0152 B7F83432 		ldrh	r3, [r7, #564]
- 283 0156 0133     		adds	r3, r3, #1
- 284 0158 A7F83432 		strh	r3, [r7, #564]	@ movhi
- 285              	.L4:
- 166:main.c        ****         {
- 286              		.loc 1 166 0 is_stmt 0 discriminator 1
- 287 015c B7F83432 		ldrh	r3, [r7, #564]
- 288 0160 3B2B     		cmp	r3, #59
- 289 0162 C8D9     		bls	.L5
- 290              	.LBE2:
- 177:main.c        ****         }
- 178:main.c        ****     }
- 291              		.loc 1 178 0 is_stmt 1
- 292 0164 C3E7     		b	.L6
- 293              	.L8:
- 294 0166 00BF     		.align	2
- 295              	.L7:
- 296 0168 00000000 		.word	.LC0
- 297 016c 10000000 		.word	.LC1
- 298 0170 00000000 		.word	PWM_Lookup
- 299 0174 18000000 		.word	.LC2
- 300 0178 1C000000 		.word	.LC3
- 301              		.cfi_endproc
- 302              	.LFE64:
- 303              		.size	main, .-main
- 304              		.text
- 305              	.Letext0:
- 306              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 307              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 308              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 309              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
- 310              		.section	.debug_info,"",%progbits
- 311              	.Ldebug_info0:
- 312 0000 F7010000 		.4byte	0x1f7
- 313 0004 0400     		.2byte	0x4
- 314 0006 00000000 		.4byte	.Ldebug_abbrev0
- 315 000a 04       		.byte	0x4
- 316 000b 01       		.uleb128 0x1
- 317 000c 6C000000 		.4byte	.LASF32
- 318 0010 0C       		.byte	0xc
- 319 0011 F3010000 		.4byte	.LASF33
- 320 0015 0E000000 		.4byte	.LASF34
- 321 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 322 001d 00000000 		.4byte	0
- 323 0021 00000000 		.4byte	.Ldebug_line0
- 324 0025 02       		.uleb128 0x2
- 325 0026 01       		.byte	0x1
- 326 0027 06       		.byte	0x6
- 327 0028 42020000 		.4byte	.LASF0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 10
+ 270 0138 97F93732 		ldrsb	r3, [r7, #567]
+ 271 013c 002B     		cmp	r3, #0
+ 272 013e EEDA     		bge	.L6
+ 178:main.c        ****             }
+ 179:main.c        ****             
+ 180:main.c        ****             /* Store sum of 128 samples*/
+ 181:main.c        ****             sum = result << DIV;
+ 273              		.loc 1 181 0 is_stmt 1
+ 274 0140 D7F82032 		ldr	r3, [r7, #544]
+ 275 0144 DB01     		lsls	r3, r3, #7
+ 276 0146 C7F83032 		str	r3, [r7, #560]
+ 182:main.c        ****     
+ 183:main.c        ****             /* Average count is equal to new sample */
+ 184:main.c        ****             averageCounts = result;
+ 277              		.loc 1 184 0
+ 278 014a D7F82032 		ldr	r3, [r7, #544]
+ 279 014e C7F82C32 		str	r3, [r7, #556]
+ 185:main.c        ****             index = 0;
+ 280              		.loc 1 185 0
+ 281 0152 0023     		movs	r3, #0
+ 282 0154 87F82B32 		strb	r3, [r7, #555]
+ 283 0158 2AE0     		b	.L7
+ 284              	.L4:
+ 186:main.c        ****         }
+ 187:main.c        ****         
+ 188:main.c        ****         /* Get moving average */
+ 189:main.c        ****         else
+ 190:main.c        ****         {
+ 191:main.c        ****             /* Remove the oldest element and add new sample to sum and get 
+ 192:main.c        ****              * the average */
+ 193:main.c        ****             sum = sum - adcCounts[index];
+ 285              		.loc 1 193 0
+ 286 015a 97F82B22 		ldrb	r2, [r7, #555]	@ zero_extendqisi2
+ 287 015e 07F11403 		add	r3, r7, #20
+ 288 0162 53F82230 		ldr	r3, [r3, r2, lsl #2]
+ 289 0166 D7F83022 		ldr	r2, [r7, #560]
+ 290 016a D31A     		subs	r3, r2, r3
+ 291 016c C7F83032 		str	r3, [r7, #560]
+ 194:main.c        ****             sum = sum + result;
+ 292              		.loc 1 194 0
+ 293 0170 D7F83022 		ldr	r2, [r7, #560]
+ 294 0174 D7F82032 		ldr	r3, [r7, #544]
+ 295 0178 1344     		add	r3, r3, r2
+ 296 017a C7F83032 		str	r3, [r7, #560]
+ 195:main.c        ****             averageCounts = sum >> DIV;
+ 297              		.loc 1 195 0
+ 298 017e D7F83032 		ldr	r3, [r7, #560]
+ 299 0182 DB11     		asrs	r3, r3, #7
+ 300 0184 C7F82C32 		str	r3, [r7, #556]
+ 196:main.c        ****             
+ 197:main.c        ****             /* Remove the oldest sample and store new sample */
+ 198:main.c        ****             adcCounts[index] = result;
+ 301              		.loc 1 198 0
+ 302 0188 97F82B22 		ldrb	r2, [r7, #555]	@ zero_extendqisi2
+ 303 018c 07F11403 		add	r3, r7, #20
+ 304 0190 D7F82012 		ldr	r1, [r7, #544]
+ 305 0194 43F82210 		str	r1, [r3, r2, lsl #2]
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 10
 
 
- 328 002c 02       		.uleb128 0x2
- 329 002d 01       		.byte	0x1
- 330 002e 08       		.byte	0x8
- 331 002f 2A010000 		.4byte	.LASF1
- 332 0033 02       		.uleb128 0x2
- 333 0034 02       		.byte	0x2
- 334 0035 05       		.byte	0x5
- 335 0036 10020000 		.4byte	.LASF2
- 336 003a 03       		.uleb128 0x3
- 337 003b 78010000 		.4byte	.LASF4
- 338 003f 02       		.byte	0x2
- 339 0040 2B       		.byte	0x2b
- 340 0041 45000000 		.4byte	0x45
- 341 0045 02       		.uleb128 0x2
- 342 0046 02       		.byte	0x2
- 343 0047 07       		.byte	0x7
- 344 0048 04010000 		.4byte	.LASF3
- 345 004c 03       		.uleb128 0x3
- 346 004d FA000000 		.4byte	.LASF5
- 347 0051 02       		.byte	0x2
- 348 0052 3F       		.byte	0x3f
- 349 0053 57000000 		.4byte	0x57
- 350 0057 02       		.uleb128 0x2
- 351 0058 04       		.byte	0x4
- 352 0059 05       		.byte	0x5
- 353 005a 23020000 		.4byte	.LASF6
- 354 005e 02       		.uleb128 0x2
- 355 005f 04       		.byte	0x4
- 356 0060 07       		.byte	0x7
- 357 0061 83010000 		.4byte	.LASF7
- 358 0065 02       		.uleb128 0x2
- 359 0066 08       		.byte	0x8
- 360 0067 05       		.byte	0x5
- 361 0068 E5010000 		.4byte	.LASF8
- 362 006c 02       		.uleb128 0x2
- 363 006d 08       		.byte	0x8
- 364 006e 07       		.byte	0x7
- 365 006f B1010000 		.4byte	.LASF9
- 366 0073 04       		.uleb128 0x4
- 367 0074 04       		.byte	0x4
- 368 0075 05       		.byte	0x5
- 369 0076 696E7400 		.ascii	"int\000"
- 370 007a 02       		.uleb128 0x2
- 371 007b 04       		.byte	0x4
- 372 007c 07       		.byte	0x7
- 373 007d A4010000 		.4byte	.LASF10
- 374 0081 03       		.uleb128 0x3
- 375 0082 1A020000 		.4byte	.LASF11
- 376 0086 03       		.byte	0x3
- 377 0087 24       		.byte	0x24
- 378 0088 3A000000 		.4byte	0x3a
- 379 008c 03       		.uleb128 0x3
- 380 008d CF010000 		.4byte	.LASF12
- 381 0091 03       		.byte	0x3
- 382 0092 2C       		.byte	0x2c
- 383 0093 4C000000 		.4byte	0x4c
- 384 0097 05       		.uleb128 0x5
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 11
+ 199:main.c        ****             index++;
+ 306              		.loc 1 199 0
+ 307 0198 97F82B32 		ldrb	r3, [r7, #555]	@ zero_extendqisi2
+ 308 019c 0133     		adds	r3, r3, #1
+ 309 019e 87F82B32 		strb	r3, [r7, #555]
+ 200:main.c        ****             if (index == MAX_SAMPLE)
+ 310              		.loc 1 200 0
+ 311 01a2 97F82B32 		ldrb	r3, [r7, #555]	@ zero_extendqisi2
+ 312 01a6 802B     		cmp	r3, #128
+ 313 01a8 02D1     		bne	.L7
+ 201:main.c        ****             {
+ 202:main.c        ****                 index = 0;
+ 314              		.loc 1 202 0
+ 315 01aa 0023     		movs	r3, #0
+ 316 01ac 87F82B32 		strb	r3, [r7, #555]
+ 317              	.L7:
+ 203:main.c        ****             }
+ 204:main.c        ****         }
+ 205:main.c        ****         milliVolts = ADC_CountsTo_mVolts(averageCounts);
+ 318              		.loc 1 205 0
+ 319 01b0 D7F82C02 		ldr	r0, [r7, #556]
+ 320 01b4 FFF7FEFF 		bl	ADC_CountsTo_mVolts
+ 321 01b8 0346     		mov	r3, r0
+ 322 01ba C7F81832 		str	r3, [r7, #536]
+ 206:main.c        ****         
+ 207:main.c        ****         notePerfectValue = (milliVolts / NOTEPERFECT_STEP_SIZE_MV);
+ 323              		.loc 1 207 0
+ 324 01be D7F81832 		ldr	r3, [r7, #536]
+ 325 01c2 2C4A     		ldr	r2, .L10+8
+ 326 01c4 A2FB0323 		umull	r2, r3, r2, r3
+ 327 01c8 1B09     		lsrs	r3, r3, #4
+ 328 01ca C7F82432 		str	r3, [r7, #548]
+ 208:main.c        ****         remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV;
+ 329              		.loc 1 208 0
+ 330 01ce D7F81832 		ldr	r3, [r7, #536]
+ 331 01d2 284A     		ldr	r2, .L10+8
+ 332 01d4 A2FB0312 		umull	r1, r2, r2, r3
+ 333 01d8 1209     		lsrs	r2, r2, #4
+ 334 01da 5321     		movs	r1, #83
+ 335 01dc 01FB02F2 		mul	r2, r1, r2
+ 336 01e0 9B1A     		subs	r3, r3, r2
+ 337 01e2 C7F81432 		str	r3, [r7, #532]
+ 209:main.c        ****         if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2)
+ 338              		.loc 1 209 0
+ 339 01e6 D7F81432 		ldr	r3, [r7, #532]
+ 340 01ea 282B     		cmp	r3, #40
+ 341 01ec 04D9     		bls	.L8
+ 210:main.c        ****             notePerfectValue += 1;
+ 342              		.loc 1 210 0
+ 343 01ee D7F82432 		ldr	r3, [r7, #548]
+ 344 01f2 0133     		adds	r3, r3, #1
+ 345 01f4 C7F82432 		str	r3, [r7, #548]
+ 346              	.L8:
+ 211:main.c        ****         PWM_WriteCompare(PWM_Lookup[notePerfectValue]);
+ 347              		.loc 1 211 0
+ 348 01f8 1F4A     		ldr	r2, .L10+12
+ 349 01fa D7F82432 		ldr	r3, [r7, #548]
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 11
 
 
- 385 0098 24010000 		.4byte	.LASF13
- 386 009c 04       		.byte	0x4
- 387 009d E701     		.2byte	0x1e7
- 388 009f 2C000000 		.4byte	0x2c
- 389 00a3 05       		.uleb128 0x5
- 390 00a4 43010000 		.4byte	.LASF14
- 391 00a8 04       		.byte	0x4
- 392 00a9 EB01     		.2byte	0x1eb
- 393 00ab 33000000 		.4byte	0x33
- 394 00af 05       		.uleb128 0x5
- 395 00b0 5A010000 		.4byte	.LASF15
- 396 00b4 04       		.byte	0x4
- 397 00b5 EC01     		.2byte	0x1ec
- 398 00b7 57000000 		.4byte	0x57
- 399 00bb 02       		.uleb128 0x2
- 400 00bc 04       		.byte	0x4
- 401 00bd 04       		.byte	0x4
- 402 00be 1E010000 		.4byte	.LASF16
- 403 00c2 02       		.uleb128 0x2
- 404 00c3 08       		.byte	0x8
- 405 00c4 04       		.byte	0x4
- 406 00c5 17010000 		.4byte	.LASF17
- 407 00c9 02       		.uleb128 0x2
- 408 00ca 01       		.byte	0x1
- 409 00cb 08       		.byte	0x8
- 410 00cc FA010000 		.4byte	.LASF18
- 411 00d0 02       		.uleb128 0x2
- 412 00d1 08       		.byte	0x8
- 413 00d2 04       		.byte	0x4
- 414 00d3 36020000 		.4byte	.LASF19
- 415 00d7 02       		.uleb128 0x2
- 416 00d8 04       		.byte	0x4
- 417 00d9 07       		.byte	0x7
- 418 00da D7010000 		.4byte	.LASF20
- 419 00de 06       		.uleb128 0x6
- 420 00df 95010000 		.4byte	.LASF35
- 421 00e3 01       		.byte	0x1
- 422 00e4 5D       		.byte	0x5d
- 423 00e5 73000000 		.4byte	0x73
- 424 00e9 00000000 		.4byte	.LFB64
- 425 00ed 7C010000 		.4byte	.LFE64-.LFB64
- 426 00f1 01       		.uleb128 0x1
- 427 00f2 9C       		.byte	0x9c
- 428 00f3 A8010000 		.4byte	0x1a8
- 429 00f7 07       		.uleb128 0x7
- 430 00f8 6900     		.ascii	"i\000"
- 431 00fa 01       		.byte	0x1
- 432 00fb 5F       		.byte	0x5f
- 433 00fc 97000000 		.4byte	0x97
- 434 0100 02       		.uleb128 0x2
- 435 0101 91       		.byte	0x91
- 436 0102 77       		.sleb128 -9
- 437 0103 08       		.uleb128 0x8
- 438 0104 9A010000 		.4byte	.LASF21
- 439 0108 01       		.byte	0x1
- 440 0109 62       		.byte	0x62
- 441 010a A8010000 		.4byte	0x1a8
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 12
+ 350 01fe 32F81330 		ldrh	r3, [r2, r3, lsl #1]
+ 351 0202 1846     		mov	r0, r3
+ 352 0204 FFF7FEFF 		bl	PWM_WriteCompare
+ 212:main.c        ****         sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
+ 353              		.loc 1 212 0
+ 354 0208 1B4A     		ldr	r2, .L10+12
+ 355 020a D7F82432 		ldr	r3, [r7, #548]
+ 356 020e 32F81330 		ldrh	r3, [r2, r3, lsl #1]
+ 357 0212 1A46     		mov	r2, r3
+ 358 0214 3B1D     		adds	r3, r7, #4
+ 359 0216 1949     		ldr	r1, .L10+16
+ 360 0218 1846     		mov	r0, r3
+ 361 021a FFF7FEFF 		bl	sprintf
+ 213:main.c        ****         LCD_Position(1,12);
+ 362              		.loc 1 213 0
+ 363 021e 0C21     		movs	r1, #12
+ 364 0220 0120     		movs	r0, #1
+ 365 0222 FFF7FEFF 		bl	LCD_Position
+ 214:main.c        ****         LCD_PrintString(displayStr);
+ 366              		.loc 1 214 0
+ 367 0226 3B1D     		adds	r3, r7, #4
+ 368 0228 1846     		mov	r0, r3
+ 369 022a FFF7FEFF 		bl	LCD_PrintString
+ 215:main.c        ****             
+ 216:main.c        ****         /* Convert milli volts to string and display on the LCD */
+ 217:main.c        ****         sprintf(displayStr,"%4ld",milliVolts);
+ 370              		.loc 1 217 0
+ 371 022e 3B1D     		adds	r3, r7, #4
+ 372 0230 D7F81822 		ldr	r2, [r7, #536]
+ 373 0234 1249     		ldr	r1, .L10+20
+ 374 0236 1846     		mov	r0, r3
+ 375 0238 FFF7FEFF 		bl	sprintf
+ 218:main.c        ****         LCD_Position(1,0);
+ 376              		.loc 1 218 0
+ 377 023c 0021     		movs	r1, #0
+ 378 023e 0120     		movs	r0, #1
+ 379 0240 FFF7FEFF 		bl	LCD_Position
+ 219:main.c        ****         LCD_PrintString(displayStr);
+ 380              		.loc 1 219 0
+ 381 0244 3B1D     		adds	r3, r7, #4
+ 382 0246 1846     		mov	r0, r3
+ 383 0248 FFF7FEFF 		bl	LCD_PrintString
+ 220:main.c        ****         
+ 221:main.c        ****         /* Convert notePerfectValue to string and display on the LCD */
+ 222:main.c        ****         sprintf(displayStr,"%2ld", notePerfectValue);
+ 384              		.loc 1 222 0
+ 385 024c 3B1D     		adds	r3, r7, #4
+ 386 024e D7F82422 		ldr	r2, [r7, #548]
+ 387 0252 0C49     		ldr	r1, .L10+24
+ 388 0254 1846     		mov	r0, r3
+ 389 0256 FFF7FEFF 		bl	sprintf
+ 223:main.c        ****         LCD_Position(0,14);
+ 390              		.loc 1 223 0
+ 391 025a 0E21     		movs	r1, #14
+ 392 025c 0020     		movs	r0, #0
+ 393 025e FFF7FEFF 		bl	LCD_Position
+ 224:main.c        ****         LCD_PrintString(displayStr);
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 12
 
 
- 442 010e 03       		.uleb128 0x3
- 443 010f 91       		.byte	0x91
- 444 0110 D47B     		.sleb128 -556
- 445 0112 08       		.uleb128 0x8
- 446 0113 C8010000 		.4byte	.LASF22
- 447 0117 01       		.byte	0x1
- 448 0118 65       		.byte	0x65
- 449 0119 AF000000 		.4byte	0xaf
- 450 011d 02       		.uleb128 0x2
- 451 011e 91       		.byte	0x91
- 452 011f 70       		.sleb128 -16
- 453 0120 07       		.uleb128 0x7
- 454 0121 73756D00 		.ascii	"sum\000"
- 455 0125 01       		.byte	0x1
- 456 0126 68       		.byte	0x68
- 457 0127 AF000000 		.4byte	0xaf
- 458 012b 02       		.uleb128 0x2
- 459 012c 91       		.byte	0x91
- 460 012d 6C       		.sleb128 -20
- 461 012e 08       		.uleb128 0x8
- 462 012f E0010000 		.4byte	.LASF23
- 463 0133 01       		.byte	0x1
- 464 0134 6B       		.byte	0x6b
- 465 0135 A3000000 		.4byte	0xa3
- 466 0139 02       		.uleb128 0x2
- 467 013a 91       		.byte	0x91
- 468 013b 6A       		.sleb128 -22
- 469 013c 08       		.uleb128 0x8
- 470 013d 6D010000 		.4byte	.LASF24
- 471 0141 01       		.byte	0x1
- 472 0142 6F       		.byte	0x6f
- 473 0143 AF000000 		.4byte	0xaf
- 474 0147 02       		.uleb128 0x2
- 475 0148 91       		.byte	0x91
- 476 0149 64       		.sleb128 -28
- 477 014a 08       		.uleb128 0x8
- 478 014b 00000000 		.4byte	.LASF25
- 479 014f 01       		.byte	0x1
- 480 0150 72       		.byte	0x72
- 481 0151 AF000000 		.4byte	0xaf
- 482 0155 02       		.uleb128 0x2
- 483 0156 91       		.byte	0x91
- 484 0157 60       		.sleb128 -32
- 485 0158 08       		.uleb128 0x8
- 486 0159 FF010000 		.4byte	.LASF26
- 487 015d 01       		.byte	0x1
- 488 015e 75       		.byte	0x75
- 489 015f 97000000 		.4byte	0x97
- 490 0163 02       		.uleb128 0x2
- 491 0164 91       		.byte	0x91
- 492 0165 5F       		.sleb128 -33
- 493 0166 08       		.uleb128 0x8
- 494 0167 49010000 		.4byte	.LASF27
- 495 016b 01       		.byte	0x1
- 496 016c 78       		.byte	0x78
- 497 016d AF000000 		.4byte	0xaf
- 498 0171 02       		.uleb128 0x2
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 13
+ 394              		.loc 1 224 0
+ 395 0262 3B1D     		adds	r3, r7, #4
+ 396 0264 1846     		mov	r0, r3
+ 397 0266 FFF7FEFF 		bl	LCD_PrintString
+ 225:main.c        ****         
+ 226:main.c        ****     }	
+ 398              		.loc 1 226 0
+ 399 026a 3EE7     		b	.L9
+ 400              	.L11:
+ 401              		.align	2
+ 402              	.L10:
+ 403 026c 00000000 		.word	.LC0
+ 404 0270 10000000 		.word	.LC1
+ 405 0274 1F725931 		.word	827945503
+ 406 0278 00000000 		.word	PWM_Lookup
+ 407 027c 18000000 		.word	.LC2
+ 408 0280 1C000000 		.word	.LC3
+ 409 0284 24000000 		.word	.LC4
+ 410              		.cfi_endproc
+ 411              	.LFE64:
+ 412              		.size	main, .-main
+ 413              		.text
+ 414              	.Letext0:
+ 415              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 416              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 417              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 418              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 419              		.section	.debug_info,"",%progbits
+ 420              	.Ldebug_info0:
+ 421 0000 ED010000 		.4byte	0x1ed
+ 422 0004 0400     		.2byte	0x4
+ 423 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 424 000a 04       		.byte	0x4
+ 425 000b 01       		.uleb128 0x1
+ 426 000c 6C000000 		.4byte	.LASF33
+ 427 0010 0C       		.byte	0xc
+ 428 0011 FA010000 		.4byte	.LASF34
+ 429 0015 0E000000 		.4byte	.LASF35
+ 430 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 431 001d 00000000 		.4byte	0
+ 432 0021 00000000 		.4byte	.Ldebug_line0
+ 433 0025 02       		.uleb128 0x2
+ 434 0026 01       		.byte	0x1
+ 435 0027 06       		.byte	0x6
+ 436 0028 49020000 		.4byte	.LASF0
+ 437 002c 02       		.uleb128 0x2
+ 438 002d 01       		.byte	0x1
+ 439 002e 08       		.byte	0x8
+ 440 002f 2A010000 		.4byte	.LASF1
+ 441 0033 02       		.uleb128 0x2
+ 442 0034 02       		.byte	0x2
+ 443 0035 05       		.byte	0x5
+ 444 0036 17020000 		.4byte	.LASF2
+ 445 003a 03       		.uleb128 0x3
+ 446 003b 78010000 		.4byte	.LASF4
+ 447 003f 02       		.byte	0x2
+ 448 0040 2B       		.byte	0x2b
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 13
 
 
- 499 0172 91       		.byte	0x91
- 500 0173 58       		.sleb128 -40
- 501 0174 08       		.uleb128 0x8
- 502 0175 2C020000 		.4byte	.LASF28
- 503 0179 01       		.byte	0x1
- 504 017a 79       		.byte	0x79
- 505 017b AF000000 		.4byte	0xaf
- 506 017f 02       		.uleb128 0x2
- 507 0180 91       		.byte	0x91
- 508 0181 54       		.sleb128 -44
- 509 0182 08       		.uleb128 0x8
- 510 0183 05020000 		.4byte	.LASF29
- 511 0187 01       		.byte	0x1
- 512 0188 7C       		.byte	0x7c
- 513 0189 B8010000 		.4byte	0x1b8
- 514 018d 03       		.uleb128 0x3
- 515 018e 91       		.byte	0x91
- 516 018f C47B     		.sleb128 -572
- 517 0191 09       		.uleb128 0x9
- 518 0192 EE000000 		.4byte	.LBB2
- 519 0196 76000000 		.4byte	.LBE2-.LBB2
- 520 019a 07       		.uleb128 0x7
- 521 019b 6900     		.ascii	"i\000"
- 522 019d 01       		.byte	0x1
- 523 019e A6       		.byte	0xa6
- 524 019f 81000000 		.4byte	0x81
- 525 01a3 02       		.uleb128 0x2
- 526 01a4 91       		.byte	0x91
- 527 01a5 74       		.sleb128 -12
- 528 01a6 00       		.byte	0
- 529 01a7 00       		.byte	0
- 530 01a8 0A       		.uleb128 0xa
- 531 01a9 AF000000 		.4byte	0xaf
- 532 01ad B8010000 		.4byte	0x1b8
- 533 01b1 0B       		.uleb128 0xb
- 534 01b2 D7000000 		.4byte	0xd7
- 535 01b6 7F       		.byte	0x7f
- 536 01b7 00       		.byte	0
- 537 01b8 0A       		.uleb128 0xa
- 538 01b9 C9000000 		.4byte	0xc9
- 539 01bd C8010000 		.4byte	0x1c8
- 540 01c1 0B       		.uleb128 0xb
- 541 01c2 D7000000 		.4byte	0xd7
- 542 01c6 0E       		.byte	0xe
- 543 01c7 00       		.byte	0
- 544 01c8 0C       		.uleb128 0xc
- 545 01c9 60010000 		.4byte	.LASF30
- 546 01cd 05       		.byte	0x5
- 547 01ce 1207     		.2byte	0x712
- 548 01d0 D4010000 		.4byte	0x1d4
- 549 01d4 0D       		.uleb128 0xd
- 550 01d5 8C000000 		.4byte	0x8c
- 551 01d9 0A       		.uleb128 0xa
- 552 01da 81000000 		.4byte	0x81
- 553 01de E9010000 		.4byte	0x1e9
- 554 01e2 0B       		.uleb128 0xb
- 555 01e3 D7000000 		.4byte	0xd7
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 14
+ 449 0041 45000000 		.4byte	0x45
+ 450 0045 02       		.uleb128 0x2
+ 451 0046 02       		.byte	0x2
+ 452 0047 07       		.byte	0x7
+ 453 0048 04010000 		.4byte	.LASF3
+ 454 004c 03       		.uleb128 0x3
+ 455 004d FA000000 		.4byte	.LASF5
+ 456 0051 02       		.byte	0x2
+ 457 0052 3F       		.byte	0x3f
+ 458 0053 57000000 		.4byte	0x57
+ 459 0057 02       		.uleb128 0x2
+ 460 0058 04       		.byte	0x4
+ 461 0059 05       		.byte	0x5
+ 462 005a 2A020000 		.4byte	.LASF6
+ 463 005e 02       		.uleb128 0x2
+ 464 005f 04       		.byte	0x4
+ 465 0060 07       		.byte	0x7
+ 466 0061 83010000 		.4byte	.LASF7
+ 467 0065 02       		.uleb128 0x2
+ 468 0066 08       		.byte	0x8
+ 469 0067 05       		.byte	0x5
+ 470 0068 EC010000 		.4byte	.LASF8
+ 471 006c 02       		.uleb128 0x2
+ 472 006d 08       		.byte	0x8
+ 473 006e 07       		.byte	0x7
+ 474 006f B8010000 		.4byte	.LASF9
+ 475 0073 04       		.uleb128 0x4
+ 476 0074 04       		.byte	0x4
+ 477 0075 05       		.byte	0x5
+ 478 0076 696E7400 		.ascii	"int\000"
+ 479 007a 02       		.uleb128 0x2
+ 480 007b 04       		.byte	0x4
+ 481 007c 07       		.byte	0x7
+ 482 007d AB010000 		.4byte	.LASF10
+ 483 0081 03       		.uleb128 0x3
+ 484 0082 21020000 		.4byte	.LASF11
+ 485 0086 03       		.byte	0x3
+ 486 0087 24       		.byte	0x24
+ 487 0088 3A000000 		.4byte	0x3a
+ 488 008c 03       		.uleb128 0x3
+ 489 008d D6010000 		.4byte	.LASF12
+ 490 0091 03       		.byte	0x3
+ 491 0092 2C       		.byte	0x2c
+ 492 0093 4C000000 		.4byte	0x4c
+ 493 0097 05       		.uleb128 0x5
+ 494 0098 24010000 		.4byte	.LASF13
+ 495 009c 04       		.byte	0x4
+ 496 009d E701     		.2byte	0x1e7
+ 497 009f 2C000000 		.4byte	0x2c
+ 498 00a3 05       		.uleb128 0x5
+ 499 00a4 A4010000 		.4byte	.LASF14
+ 500 00a8 04       		.byte	0x4
+ 501 00a9 E901     		.2byte	0x1e9
+ 502 00ab 5E000000 		.4byte	0x5e
+ 503 00af 05       		.uleb128 0x5
+ 504 00b0 43010000 		.4byte	.LASF15
+ 505 00b4 04       		.byte	0x4
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 14
 
 
- 556 01e7 3C       		.byte	0x3c
- 557 01e8 00       		.byte	0
- 558 01e9 0E       		.uleb128 0xe
- 559 01ea 38010000 		.4byte	.LASF31
- 560 01ee 01       		.byte	0x1
- 561 01ef 57       		.byte	0x57
- 562 01f0 D9010000 		.4byte	0x1d9
- 563 01f4 05       		.uleb128 0x5
- 564 01f5 03       		.byte	0x3
- 565 01f6 00000000 		.4byte	PWM_Lookup
- 566 01fa 00       		.byte	0
- 567              		.section	.debug_abbrev,"",%progbits
- 568              	.Ldebug_abbrev0:
- 569 0000 01       		.uleb128 0x1
- 570 0001 11       		.uleb128 0x11
- 571 0002 01       		.byte	0x1
- 572 0003 25       		.uleb128 0x25
- 573 0004 0E       		.uleb128 0xe
- 574 0005 13       		.uleb128 0x13
- 575 0006 0B       		.uleb128 0xb
- 576 0007 03       		.uleb128 0x3
- 577 0008 0E       		.uleb128 0xe
- 578 0009 1B       		.uleb128 0x1b
- 579 000a 0E       		.uleb128 0xe
- 580 000b 55       		.uleb128 0x55
- 581 000c 17       		.uleb128 0x17
- 582 000d 11       		.uleb128 0x11
- 583 000e 01       		.uleb128 0x1
- 584 000f 10       		.uleb128 0x10
- 585 0010 17       		.uleb128 0x17
- 586 0011 00       		.byte	0
- 587 0012 00       		.byte	0
- 588 0013 02       		.uleb128 0x2
- 589 0014 24       		.uleb128 0x24
- 590 0015 00       		.byte	0
- 591 0016 0B       		.uleb128 0xb
- 592 0017 0B       		.uleb128 0xb
- 593 0018 3E       		.uleb128 0x3e
- 594 0019 0B       		.uleb128 0xb
- 595 001a 03       		.uleb128 0x3
- 596 001b 0E       		.uleb128 0xe
- 597 001c 00       		.byte	0
- 598 001d 00       		.byte	0
- 599 001e 03       		.uleb128 0x3
- 600 001f 16       		.uleb128 0x16
- 601 0020 00       		.byte	0
- 602 0021 03       		.uleb128 0x3
- 603 0022 0E       		.uleb128 0xe
- 604 0023 3A       		.uleb128 0x3a
- 605 0024 0B       		.uleb128 0xb
- 606 0025 3B       		.uleb128 0x3b
- 607 0026 0B       		.uleb128 0xb
- 608 0027 49       		.uleb128 0x49
- 609 0028 13       		.uleb128 0x13
- 610 0029 00       		.byte	0
- 611 002a 00       		.byte	0
- 612 002b 04       		.uleb128 0x4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 15
+ 506 00b5 EB01     		.2byte	0x1eb
+ 507 00b7 33000000 		.4byte	0x33
+ 508 00bb 05       		.uleb128 0x5
+ 509 00bc 5A010000 		.4byte	.LASF16
+ 510 00c0 04       		.byte	0x4
+ 511 00c1 EC01     		.2byte	0x1ec
+ 512 00c3 57000000 		.4byte	0x57
+ 513 00c7 02       		.uleb128 0x2
+ 514 00c8 04       		.byte	0x4
+ 515 00c9 04       		.byte	0x4
+ 516 00ca 1E010000 		.4byte	.LASF17
+ 517 00ce 02       		.uleb128 0x2
+ 518 00cf 08       		.byte	0x8
+ 519 00d0 04       		.byte	0x4
+ 520 00d1 17010000 		.4byte	.LASF18
+ 521 00d5 02       		.uleb128 0x2
+ 522 00d6 01       		.byte	0x1
+ 523 00d7 08       		.byte	0x8
+ 524 00d8 01020000 		.4byte	.LASF19
+ 525 00dc 02       		.uleb128 0x2
+ 526 00dd 08       		.byte	0x8
+ 527 00de 04       		.byte	0x4
+ 528 00df 3D020000 		.4byte	.LASF20
+ 529 00e3 02       		.uleb128 0x2
+ 530 00e4 04       		.byte	0x4
+ 531 00e5 07       		.byte	0x7
+ 532 00e6 DE010000 		.4byte	.LASF21
+ 533 00ea 06       		.uleb128 0x6
+ 534 00eb 95010000 		.4byte	.LASF36
+ 535 00ef 01       		.byte	0x1
+ 536 00f0 5E       		.byte	0x5e
+ 537 00f1 73000000 		.4byte	0x73
+ 538 00f5 00000000 		.4byte	.LFB64
+ 539 00f9 88020000 		.4byte	.LFE64-.LFB64
+ 540 00fd 01       		.uleb128 0x1
+ 541 00fe 9C       		.byte	0x9c
+ 542 00ff 9E010000 		.4byte	0x19e
+ 543 0103 07       		.uleb128 0x7
+ 544 0104 6900     		.ascii	"i\000"
+ 545 0106 01       		.byte	0x1
+ 546 0107 60       		.byte	0x60
+ 547 0108 97000000 		.4byte	0x97
+ 548 010c 02       		.uleb128 0x2
+ 549 010d 91       		.byte	0x91
+ 550 010e 77       		.sleb128 -9
+ 551 010f 08       		.uleb128 0x8
+ 552 0110 9A010000 		.4byte	.LASF22
+ 553 0114 01       		.byte	0x1
+ 554 0115 63       		.byte	0x63
+ 555 0116 9E010000 		.4byte	0x19e
+ 556 011a 03       		.uleb128 0x3
+ 557 011b 91       		.byte	0x91
+ 558 011c D47B     		.sleb128 -556
+ 559 011e 08       		.uleb128 0x8
+ 560 011f CF010000 		.4byte	.LASF23
+ 561 0123 01       		.byte	0x1
+ 562 0124 66       		.byte	0x66
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 15
 
 
- 613 002c 24       		.uleb128 0x24
- 614 002d 00       		.byte	0
- 615 002e 0B       		.uleb128 0xb
- 616 002f 0B       		.uleb128 0xb
- 617 0030 3E       		.uleb128 0x3e
- 618 0031 0B       		.uleb128 0xb
- 619 0032 03       		.uleb128 0x3
- 620 0033 08       		.uleb128 0x8
- 621 0034 00       		.byte	0
- 622 0035 00       		.byte	0
- 623 0036 05       		.uleb128 0x5
- 624 0037 16       		.uleb128 0x16
- 625 0038 00       		.byte	0
- 626 0039 03       		.uleb128 0x3
- 627 003a 0E       		.uleb128 0xe
- 628 003b 3A       		.uleb128 0x3a
- 629 003c 0B       		.uleb128 0xb
- 630 003d 3B       		.uleb128 0x3b
- 631 003e 05       		.uleb128 0x5
- 632 003f 49       		.uleb128 0x49
- 633 0040 13       		.uleb128 0x13
- 634 0041 00       		.byte	0
- 635 0042 00       		.byte	0
- 636 0043 06       		.uleb128 0x6
- 637 0044 2E       		.uleb128 0x2e
- 638 0045 01       		.byte	0x1
- 639 0046 3F       		.uleb128 0x3f
- 640 0047 19       		.uleb128 0x19
- 641 0048 03       		.uleb128 0x3
- 642 0049 0E       		.uleb128 0xe
- 643 004a 3A       		.uleb128 0x3a
- 644 004b 0B       		.uleb128 0xb
- 645 004c 3B       		.uleb128 0x3b
- 646 004d 0B       		.uleb128 0xb
- 647 004e 27       		.uleb128 0x27
- 648 004f 19       		.uleb128 0x19
- 649 0050 49       		.uleb128 0x49
- 650 0051 13       		.uleb128 0x13
- 651 0052 11       		.uleb128 0x11
- 652 0053 01       		.uleb128 0x1
- 653 0054 12       		.uleb128 0x12
- 654 0055 06       		.uleb128 0x6
- 655 0056 40       		.uleb128 0x40
- 656 0057 18       		.uleb128 0x18
- 657 0058 9642     		.uleb128 0x2116
- 658 005a 19       		.uleb128 0x19
- 659 005b 01       		.uleb128 0x1
- 660 005c 13       		.uleb128 0x13
- 661 005d 00       		.byte	0
- 662 005e 00       		.byte	0
- 663 005f 07       		.uleb128 0x7
- 664 0060 34       		.uleb128 0x34
- 665 0061 00       		.byte	0
- 666 0062 03       		.uleb128 0x3
- 667 0063 08       		.uleb128 0x8
- 668 0064 3A       		.uleb128 0x3a
- 669 0065 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 16
+ 563 0125 BB000000 		.4byte	0xbb
+ 564 0129 02       		.uleb128 0x2
+ 565 012a 91       		.byte	0x91
+ 566 012b 60       		.sleb128 -32
+ 567 012c 07       		.uleb128 0x7
+ 568 012d 73756D00 		.ascii	"sum\000"
+ 569 0131 01       		.byte	0x1
+ 570 0132 69       		.byte	0x69
+ 571 0133 BB000000 		.4byte	0xbb
+ 572 0137 02       		.uleb128 0x2
+ 573 0138 91       		.byte	0x91
+ 574 0139 70       		.sleb128 -16
+ 575 013a 08       		.uleb128 0x8
+ 576 013b E7010000 		.4byte	.LASF24
+ 577 013f 01       		.byte	0x1
+ 578 0140 6C       		.byte	0x6c
+ 579 0141 AF000000 		.4byte	0xaf
+ 580 0145 02       		.uleb128 0x2
+ 581 0146 91       		.byte	0x91
+ 582 0147 5E       		.sleb128 -34
+ 583 0148 08       		.uleb128 0x8
+ 584 0149 6D010000 		.4byte	.LASF25
+ 585 014d 01       		.byte	0x1
+ 586 014e 70       		.byte	0x70
+ 587 014f BB000000 		.4byte	0xbb
+ 588 0153 02       		.uleb128 0x2
+ 589 0154 91       		.byte	0x91
+ 590 0155 58       		.sleb128 -40
+ 591 0156 08       		.uleb128 0x8
+ 592 0157 00000000 		.4byte	.LASF26
+ 593 015b 01       		.byte	0x1
+ 594 015c 73       		.byte	0x73
+ 595 015d BB000000 		.4byte	0xbb
+ 596 0161 02       		.uleb128 0x2
+ 597 0162 91       		.byte	0x91
+ 598 0163 6C       		.sleb128 -20
+ 599 0164 08       		.uleb128 0x8
+ 600 0165 06020000 		.4byte	.LASF27
+ 601 0169 01       		.byte	0x1
+ 602 016a 76       		.byte	0x76
+ 603 016b 97000000 		.4byte	0x97
+ 604 016f 02       		.uleb128 0x2
+ 605 0170 91       		.byte	0x91
+ 606 0171 6B       		.sleb128 -21
+ 607 0172 08       		.uleb128 0x8
+ 608 0173 49010000 		.4byte	.LASF28
+ 609 0177 01       		.byte	0x1
+ 610 0178 79       		.byte	0x79
+ 611 0179 A3000000 		.4byte	0xa3
+ 612 017d 02       		.uleb128 0x2
+ 613 017e 91       		.byte	0x91
+ 614 017f 64       		.sleb128 -28
+ 615 0180 08       		.uleb128 0x8
+ 616 0181 33020000 		.4byte	.LASF29
+ 617 0185 01       		.byte	0x1
+ 618 0186 7A       		.byte	0x7a
+ 619 0187 A3000000 		.4byte	0xa3
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 16
 
 
- 670 0066 3B       		.uleb128 0x3b
- 671 0067 0B       		.uleb128 0xb
- 672 0068 49       		.uleb128 0x49
- 673 0069 13       		.uleb128 0x13
- 674 006a 02       		.uleb128 0x2
- 675 006b 18       		.uleb128 0x18
- 676 006c 00       		.byte	0
- 677 006d 00       		.byte	0
- 678 006e 08       		.uleb128 0x8
- 679 006f 34       		.uleb128 0x34
- 680 0070 00       		.byte	0
- 681 0071 03       		.uleb128 0x3
- 682 0072 0E       		.uleb128 0xe
- 683 0073 3A       		.uleb128 0x3a
- 684 0074 0B       		.uleb128 0xb
- 685 0075 3B       		.uleb128 0x3b
- 686 0076 0B       		.uleb128 0xb
- 687 0077 49       		.uleb128 0x49
- 688 0078 13       		.uleb128 0x13
- 689 0079 02       		.uleb128 0x2
- 690 007a 18       		.uleb128 0x18
- 691 007b 00       		.byte	0
- 692 007c 00       		.byte	0
- 693 007d 09       		.uleb128 0x9
- 694 007e 0B       		.uleb128 0xb
- 695 007f 01       		.byte	0x1
- 696 0080 11       		.uleb128 0x11
- 697 0081 01       		.uleb128 0x1
- 698 0082 12       		.uleb128 0x12
- 699 0083 06       		.uleb128 0x6
- 700 0084 00       		.byte	0
- 701 0085 00       		.byte	0
- 702 0086 0A       		.uleb128 0xa
- 703 0087 01       		.uleb128 0x1
- 704 0088 01       		.byte	0x1
- 705 0089 49       		.uleb128 0x49
- 706 008a 13       		.uleb128 0x13
- 707 008b 01       		.uleb128 0x1
- 708 008c 13       		.uleb128 0x13
- 709 008d 00       		.byte	0
- 710 008e 00       		.byte	0
- 711 008f 0B       		.uleb128 0xb
- 712 0090 21       		.uleb128 0x21
- 713 0091 00       		.byte	0
- 714 0092 49       		.uleb128 0x49
- 715 0093 13       		.uleb128 0x13
- 716 0094 2F       		.uleb128 0x2f
- 717 0095 0B       		.uleb128 0xb
- 718 0096 00       		.byte	0
- 719 0097 00       		.byte	0
- 720 0098 0C       		.uleb128 0xc
- 721 0099 34       		.uleb128 0x34
- 722 009a 00       		.byte	0
- 723 009b 03       		.uleb128 0x3
- 724 009c 0E       		.uleb128 0xe
- 725 009d 3A       		.uleb128 0x3a
- 726 009e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 17
+ 620 018b 02       		.uleb128 0x2
+ 621 018c 91       		.byte	0x91
+ 622 018d 54       		.sleb128 -44
+ 623 018e 08       		.uleb128 0x8
+ 624 018f 0C020000 		.4byte	.LASF30
+ 625 0193 01       		.byte	0x1
+ 626 0194 7D       		.byte	0x7d
+ 627 0195 AE010000 		.4byte	0x1ae
+ 628 0199 03       		.uleb128 0x3
+ 629 019a 91       		.byte	0x91
+ 630 019b C47B     		.sleb128 -572
+ 631 019d 00       		.byte	0
+ 632 019e 09       		.uleb128 0x9
+ 633 019f BB000000 		.4byte	0xbb
+ 634 01a3 AE010000 		.4byte	0x1ae
+ 635 01a7 0A       		.uleb128 0xa
+ 636 01a8 E3000000 		.4byte	0xe3
+ 637 01ac 7F       		.byte	0x7f
+ 638 01ad 00       		.byte	0
+ 639 01ae 09       		.uleb128 0x9
+ 640 01af D5000000 		.4byte	0xd5
+ 641 01b3 BE010000 		.4byte	0x1be
+ 642 01b7 0A       		.uleb128 0xa
+ 643 01b8 E3000000 		.4byte	0xe3
+ 644 01bc 0E       		.byte	0xe
+ 645 01bd 00       		.byte	0
+ 646 01be 0B       		.uleb128 0xb
+ 647 01bf 60010000 		.4byte	.LASF31
+ 648 01c3 05       		.byte	0x5
+ 649 01c4 1207     		.2byte	0x712
+ 650 01c6 CA010000 		.4byte	0x1ca
+ 651 01ca 0C       		.uleb128 0xc
+ 652 01cb 8C000000 		.4byte	0x8c
+ 653 01cf 09       		.uleb128 0x9
+ 654 01d0 81000000 		.4byte	0x81
+ 655 01d4 DF010000 		.4byte	0x1df
+ 656 01d8 0A       		.uleb128 0xa
+ 657 01d9 E3000000 		.4byte	0xe3
+ 658 01dd 3C       		.byte	0x3c
+ 659 01de 00       		.byte	0
+ 660 01df 0D       		.uleb128 0xd
+ 661 01e0 38010000 		.4byte	.LASF32
+ 662 01e4 01       		.byte	0x1
+ 663 01e5 58       		.byte	0x58
+ 664 01e6 CF010000 		.4byte	0x1cf
+ 665 01ea 05       		.uleb128 0x5
+ 666 01eb 03       		.byte	0x3
+ 667 01ec 00000000 		.4byte	PWM_Lookup
+ 668 01f0 00       		.byte	0
+ 669              		.section	.debug_abbrev,"",%progbits
+ 670              	.Ldebug_abbrev0:
+ 671 0000 01       		.uleb128 0x1
+ 672 0001 11       		.uleb128 0x11
+ 673 0002 01       		.byte	0x1
+ 674 0003 25       		.uleb128 0x25
+ 675 0004 0E       		.uleb128 0xe
+ 676 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 17
 
 
- 727 009f 3B       		.uleb128 0x3b
- 728 00a0 05       		.uleb128 0x5
- 729 00a1 49       		.uleb128 0x49
- 730 00a2 13       		.uleb128 0x13
- 731 00a3 3F       		.uleb128 0x3f
- 732 00a4 19       		.uleb128 0x19
- 733 00a5 3C       		.uleb128 0x3c
- 734 00a6 19       		.uleb128 0x19
- 735 00a7 00       		.byte	0
- 736 00a8 00       		.byte	0
- 737 00a9 0D       		.uleb128 0xd
- 738 00aa 35       		.uleb128 0x35
- 739 00ab 00       		.byte	0
- 740 00ac 49       		.uleb128 0x49
- 741 00ad 13       		.uleb128 0x13
- 742 00ae 00       		.byte	0
- 743 00af 00       		.byte	0
- 744 00b0 0E       		.uleb128 0xe
- 745 00b1 34       		.uleb128 0x34
- 746 00b2 00       		.byte	0
- 747 00b3 03       		.uleb128 0x3
- 748 00b4 0E       		.uleb128 0xe
- 749 00b5 3A       		.uleb128 0x3a
- 750 00b6 0B       		.uleb128 0xb
- 751 00b7 3B       		.uleb128 0x3b
- 752 00b8 0B       		.uleb128 0xb
- 753 00b9 49       		.uleb128 0x49
- 754 00ba 13       		.uleb128 0x13
- 755 00bb 3F       		.uleb128 0x3f
- 756 00bc 19       		.uleb128 0x19
- 757 00bd 02       		.uleb128 0x2
- 758 00be 18       		.uleb128 0x18
- 759 00bf 00       		.byte	0
- 760 00c0 00       		.byte	0
- 761 00c1 00       		.byte	0
- 762              		.section	.debug_aranges,"",%progbits
- 763 0000 1C000000 		.4byte	0x1c
- 764 0004 0200     		.2byte	0x2
- 765 0006 00000000 		.4byte	.Ldebug_info0
- 766 000a 04       		.byte	0x4
- 767 000b 00       		.byte	0
- 768 000c 0000     		.2byte	0
- 769 000e 0000     		.2byte	0
- 770 0010 00000000 		.4byte	.LFB64
- 771 0014 7C010000 		.4byte	.LFE64-.LFB64
- 772 0018 00000000 		.4byte	0
- 773 001c 00000000 		.4byte	0
- 774              		.section	.debug_ranges,"",%progbits
- 775              	.Ldebug_ranges0:
- 776 0000 00000000 		.4byte	.LFB64
- 777 0004 7C010000 		.4byte	.LFE64
- 778 0008 00000000 		.4byte	0
- 779 000c 00000000 		.4byte	0
- 780              		.section	.debug_line,"",%progbits
- 781              	.Ldebug_line0:
- 782 0000 CA010000 		.section	.debug_str,"MS",%progbits,1
- 782      02004C01 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 18
+ 677 0006 0B       		.uleb128 0xb
+ 678 0007 03       		.uleb128 0x3
+ 679 0008 0E       		.uleb128 0xe
+ 680 0009 1B       		.uleb128 0x1b
+ 681 000a 0E       		.uleb128 0xe
+ 682 000b 55       		.uleb128 0x55
+ 683 000c 17       		.uleb128 0x17
+ 684 000d 11       		.uleb128 0x11
+ 685 000e 01       		.uleb128 0x1
+ 686 000f 10       		.uleb128 0x10
+ 687 0010 17       		.uleb128 0x17
+ 688 0011 00       		.byte	0
+ 689 0012 00       		.byte	0
+ 690 0013 02       		.uleb128 0x2
+ 691 0014 24       		.uleb128 0x24
+ 692 0015 00       		.byte	0
+ 693 0016 0B       		.uleb128 0xb
+ 694 0017 0B       		.uleb128 0xb
+ 695 0018 3E       		.uleb128 0x3e
+ 696 0019 0B       		.uleb128 0xb
+ 697 001a 03       		.uleb128 0x3
+ 698 001b 0E       		.uleb128 0xe
+ 699 001c 00       		.byte	0
+ 700 001d 00       		.byte	0
+ 701 001e 03       		.uleb128 0x3
+ 702 001f 16       		.uleb128 0x16
+ 703 0020 00       		.byte	0
+ 704 0021 03       		.uleb128 0x3
+ 705 0022 0E       		.uleb128 0xe
+ 706 0023 3A       		.uleb128 0x3a
+ 707 0024 0B       		.uleb128 0xb
+ 708 0025 3B       		.uleb128 0x3b
+ 709 0026 0B       		.uleb128 0xb
+ 710 0027 49       		.uleb128 0x49
+ 711 0028 13       		.uleb128 0x13
+ 712 0029 00       		.byte	0
+ 713 002a 00       		.byte	0
+ 714 002b 04       		.uleb128 0x4
+ 715 002c 24       		.uleb128 0x24
+ 716 002d 00       		.byte	0
+ 717 002e 0B       		.uleb128 0xb
+ 718 002f 0B       		.uleb128 0xb
+ 719 0030 3E       		.uleb128 0x3e
+ 720 0031 0B       		.uleb128 0xb
+ 721 0032 03       		.uleb128 0x3
+ 722 0033 08       		.uleb128 0x8
+ 723 0034 00       		.byte	0
+ 724 0035 00       		.byte	0
+ 725 0036 05       		.uleb128 0x5
+ 726 0037 16       		.uleb128 0x16
+ 727 0038 00       		.byte	0
+ 728 0039 03       		.uleb128 0x3
+ 729 003a 0E       		.uleb128 0xe
+ 730 003b 3A       		.uleb128 0x3a
+ 731 003c 0B       		.uleb128 0xb
+ 732 003d 3B       		.uleb128 0x3b
+ 733 003e 05       		.uleb128 0x5
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 18
 
 
- 782      00000201 
- 782      FB0E0D00 
- 782      01010101 
- 783              	.LASF25:
- 784 0000 61766572 		.ascii	"averageCounts\000"
- 784      61676543 
- 784      6F756E74 
- 784      7300
- 785              	.LASF34:
- 786 000e 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\Technical Topics\\PSoC"
- 786      73657273 
- 786      5C446176 
- 786      69645C44 
- 786      6F63756D 
- 787 003c 20437265 		.ascii	" Creator Projects\\NotePerfect\\NotePerfect.cydsn\000"
- 787      61746F72 
- 787      2050726F 
- 787      6A656374 
- 787      735C4E6F 
- 788              	.LASF32:
- 789 006c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 789      43313120 
- 789      352E342E 
- 789      31203230 
- 789      31363036 
- 790 009f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 790      20726576 
- 790      6973696F 
- 790      6E203233 
- 790      37373135 
- 791 00d2 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 791      66756E63 
- 791      74696F6E 
- 791      2D736563 
- 791      74696F6E 
- 792              	.LASF5:
- 793 00fa 5F5F696E 		.ascii	"__int32_t\000"
- 793      7433325F 
- 793      7400
- 794              	.LASF3:
- 795 0104 73686F72 		.ascii	"short unsigned int\000"
- 795      7420756E 
- 795      7369676E 
- 795      65642069 
- 795      6E7400
- 796              	.LASF17:
- 797 0117 646F7562 		.ascii	"double\000"
- 797      6C6500
- 798              	.LASF16:
- 799 011e 666C6F61 		.ascii	"float\000"
- 799      7400
- 800              	.LASF13:
- 801 0124 75696E74 		.ascii	"uint8\000"
- 801      3800
- 802              	.LASF1:
- 803 012a 756E7369 		.ascii	"unsigned char\000"
- 803      676E6564 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 19
+ 734 003f 49       		.uleb128 0x49
+ 735 0040 13       		.uleb128 0x13
+ 736 0041 00       		.byte	0
+ 737 0042 00       		.byte	0
+ 738 0043 06       		.uleb128 0x6
+ 739 0044 2E       		.uleb128 0x2e
+ 740 0045 01       		.byte	0x1
+ 741 0046 3F       		.uleb128 0x3f
+ 742 0047 19       		.uleb128 0x19
+ 743 0048 03       		.uleb128 0x3
+ 744 0049 0E       		.uleb128 0xe
+ 745 004a 3A       		.uleb128 0x3a
+ 746 004b 0B       		.uleb128 0xb
+ 747 004c 3B       		.uleb128 0x3b
+ 748 004d 0B       		.uleb128 0xb
+ 749 004e 27       		.uleb128 0x27
+ 750 004f 19       		.uleb128 0x19
+ 751 0050 49       		.uleb128 0x49
+ 752 0051 13       		.uleb128 0x13
+ 753 0052 11       		.uleb128 0x11
+ 754 0053 01       		.uleb128 0x1
+ 755 0054 12       		.uleb128 0x12
+ 756 0055 06       		.uleb128 0x6
+ 757 0056 40       		.uleb128 0x40
+ 758 0057 18       		.uleb128 0x18
+ 759 0058 9642     		.uleb128 0x2116
+ 760 005a 19       		.uleb128 0x19
+ 761 005b 01       		.uleb128 0x1
+ 762 005c 13       		.uleb128 0x13
+ 763 005d 00       		.byte	0
+ 764 005e 00       		.byte	0
+ 765 005f 07       		.uleb128 0x7
+ 766 0060 34       		.uleb128 0x34
+ 767 0061 00       		.byte	0
+ 768 0062 03       		.uleb128 0x3
+ 769 0063 08       		.uleb128 0x8
+ 770 0064 3A       		.uleb128 0x3a
+ 771 0065 0B       		.uleb128 0xb
+ 772 0066 3B       		.uleb128 0x3b
+ 773 0067 0B       		.uleb128 0xb
+ 774 0068 49       		.uleb128 0x49
+ 775 0069 13       		.uleb128 0x13
+ 776 006a 02       		.uleb128 0x2
+ 777 006b 18       		.uleb128 0x18
+ 778 006c 00       		.byte	0
+ 779 006d 00       		.byte	0
+ 780 006e 08       		.uleb128 0x8
+ 781 006f 34       		.uleb128 0x34
+ 782 0070 00       		.byte	0
+ 783 0071 03       		.uleb128 0x3
+ 784 0072 0E       		.uleb128 0xe
+ 785 0073 3A       		.uleb128 0x3a
+ 786 0074 0B       		.uleb128 0xb
+ 787 0075 3B       		.uleb128 0x3b
+ 788 0076 0B       		.uleb128 0xb
+ 789 0077 49       		.uleb128 0x49
+ 790 0078 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 19
 
 
- 803      20636861 
- 803      7200
- 804              	.LASF31:
- 805 0138 50574D5F 		.ascii	"PWM_Lookup\000"
- 805      4C6F6F6B 
- 805      757000
- 806              	.LASF14:
- 807 0143 696E7431 		.ascii	"int16\000"
- 807      3600
- 808              	.LASF27:
- 809 0149 6E6F7465 		.ascii	"notePerfectValue\000"
- 809      50657266 
- 809      65637456 
- 809      616C7565 
- 809      00
- 810              	.LASF15:
- 811 015a 696E7433 		.ascii	"int32\000"
- 811      3200
- 812              	.LASF30:
- 813 0160 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 813      52784275 
- 813      66666572 
- 813      00
- 814              	.LASF24:
- 815 016d 6D696C6C 		.ascii	"milliVolts\000"
- 815      69566F6C 
- 815      747300
- 816              	.LASF4:
- 817 0178 5F5F7569 		.ascii	"__uint16_t\000"
- 817      6E743136 
- 817      5F7400
- 818              	.LASF7:
- 819 0183 6C6F6E67 		.ascii	"long unsigned int\000"
- 819      20756E73 
- 819      69676E65 
- 819      6420696E 
- 819      7400
- 820              	.LASF35:
- 821 0195 6D61696E 		.ascii	"main\000"
- 821      00
- 822              	.LASF21:
- 823 019a 61646343 		.ascii	"adcCounts\000"
- 823      6F756E74 
- 823      7300
- 824              	.LASF10:
- 825 01a4 756E7369 		.ascii	"unsigned int\000"
- 825      676E6564 
- 825      20696E74 
- 825      00
- 826              	.LASF9:
- 827 01b1 6C6F6E67 		.ascii	"long long unsigned int\000"
- 827      206C6F6E 
- 827      6720756E 
- 827      7369676E 
- 827      65642069 
- 828              	.LASF22:
- 829 01c8 72657375 		.ascii	"result\000"
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccawH4Fd.s 			page 20
+ 791 0079 02       		.uleb128 0x2
+ 792 007a 18       		.uleb128 0x18
+ 793 007b 00       		.byte	0
+ 794 007c 00       		.byte	0
+ 795 007d 09       		.uleb128 0x9
+ 796 007e 01       		.uleb128 0x1
+ 797 007f 01       		.byte	0x1
+ 798 0080 49       		.uleb128 0x49
+ 799 0081 13       		.uleb128 0x13
+ 800 0082 01       		.uleb128 0x1
+ 801 0083 13       		.uleb128 0x13
+ 802 0084 00       		.byte	0
+ 803 0085 00       		.byte	0
+ 804 0086 0A       		.uleb128 0xa
+ 805 0087 21       		.uleb128 0x21
+ 806 0088 00       		.byte	0
+ 807 0089 49       		.uleb128 0x49
+ 808 008a 13       		.uleb128 0x13
+ 809 008b 2F       		.uleb128 0x2f
+ 810 008c 0B       		.uleb128 0xb
+ 811 008d 00       		.byte	0
+ 812 008e 00       		.byte	0
+ 813 008f 0B       		.uleb128 0xb
+ 814 0090 34       		.uleb128 0x34
+ 815 0091 00       		.byte	0
+ 816 0092 03       		.uleb128 0x3
+ 817 0093 0E       		.uleb128 0xe
+ 818 0094 3A       		.uleb128 0x3a
+ 819 0095 0B       		.uleb128 0xb
+ 820 0096 3B       		.uleb128 0x3b
+ 821 0097 05       		.uleb128 0x5
+ 822 0098 49       		.uleb128 0x49
+ 823 0099 13       		.uleb128 0x13
+ 824 009a 3F       		.uleb128 0x3f
+ 825 009b 19       		.uleb128 0x19
+ 826 009c 3C       		.uleb128 0x3c
+ 827 009d 19       		.uleb128 0x19
+ 828 009e 00       		.byte	0
+ 829 009f 00       		.byte	0
+ 830 00a0 0C       		.uleb128 0xc
+ 831 00a1 35       		.uleb128 0x35
+ 832 00a2 00       		.byte	0
+ 833 00a3 49       		.uleb128 0x49
+ 834 00a4 13       		.uleb128 0x13
+ 835 00a5 00       		.byte	0
+ 836 00a6 00       		.byte	0
+ 837 00a7 0D       		.uleb128 0xd
+ 838 00a8 34       		.uleb128 0x34
+ 839 00a9 00       		.byte	0
+ 840 00aa 03       		.uleb128 0x3
+ 841 00ab 0E       		.uleb128 0xe
+ 842 00ac 3A       		.uleb128 0x3a
+ 843 00ad 0B       		.uleb128 0xb
+ 844 00ae 3B       		.uleb128 0x3b
+ 845 00af 0B       		.uleb128 0xb
+ 846 00b0 49       		.uleb128 0x49
+ 847 00b1 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 20
 
 
- 829      6C7400
- 830              	.LASF12:
- 831 01cf 696E7433 		.ascii	"int32_t\000"
- 831      325F7400 
- 832              	.LASF20:
- 833 01d7 73697A65 		.ascii	"sizetype\000"
- 833      74797065 
- 833      00
- 834              	.LASF23:
- 835 01e0 64696666 		.ascii	"diff\000"
- 835      00
- 836              	.LASF8:
- 837 01e5 6C6F6E67 		.ascii	"long long int\000"
- 837      206C6F6E 
- 837      6720696E 
- 837      7400
- 838              	.LASF33:
- 839 01f3 6D61696E 		.ascii	"main.c\000"
- 839      2E6300
- 840              	.LASF18:
- 841 01fa 63686172 		.ascii	"char\000"
- 841      00
- 842              	.LASF26:
- 843 01ff 696E6465 		.ascii	"index\000"
- 843      7800
- 844              	.LASF29:
- 845 0205 64697370 		.ascii	"displayStr\000"
- 845      6C617953 
- 845      747200
- 846              	.LASF2:
- 847 0210 73686F72 		.ascii	"short int\000"
- 847      7420696E 
- 847      7400
- 848              	.LASF11:
- 849 021a 75696E74 		.ascii	"uint16_t\000"
- 849      31365F74 
- 849      00
- 850              	.LASF6:
- 851 0223 6C6F6E67 		.ascii	"long int\000"
- 851      20696E74 
- 851      00
- 852              	.LASF28:
- 853 022c 72656D61 		.ascii	"remainder\000"
- 853      696E6465 
- 853      7200
- 854              	.LASF19:
- 855 0236 6C6F6E67 		.ascii	"long double\000"
- 855      20646F75 
- 855      626C6500 
- 856              	.LASF0:
- 857 0242 7369676E 		.ascii	"signed char\000"
- 857      65642063 
- 857      68617200 
- 858              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 848 00b2 3F       		.uleb128 0x3f
+ 849 00b3 19       		.uleb128 0x19
+ 850 00b4 02       		.uleb128 0x2
+ 851 00b5 18       		.uleb128 0x18
+ 852 00b6 00       		.byte	0
+ 853 00b7 00       		.byte	0
+ 854 00b8 00       		.byte	0
+ 855              		.section	.debug_aranges,"",%progbits
+ 856 0000 1C000000 		.4byte	0x1c
+ 857 0004 0200     		.2byte	0x2
+ 858 0006 00000000 		.4byte	.Ldebug_info0
+ 859 000a 04       		.byte	0x4
+ 860 000b 00       		.byte	0
+ 861 000c 0000     		.2byte	0
+ 862 000e 0000     		.2byte	0
+ 863 0010 00000000 		.4byte	.LFB64
+ 864 0014 88020000 		.4byte	.LFE64-.LFB64
+ 865 0018 00000000 		.4byte	0
+ 866 001c 00000000 		.4byte	0
+ 867              		.section	.debug_ranges,"",%progbits
+ 868              	.Ldebug_ranges0:
+ 869 0000 00000000 		.4byte	.LFB64
+ 870 0004 88020000 		.4byte	.LFE64
+ 871 0008 00000000 		.4byte	0
+ 872 000c 00000000 		.4byte	0
+ 873              		.section	.debug_line,"",%progbits
+ 874              	.Ldebug_line0:
+ 875 0000 BF010000 		.section	.debug_str,"MS",%progbits,1
+ 875      02004C01 
+ 875      00000201 
+ 875      FB0E0D00 
+ 875      01010101 
+ 876              	.LASF26:
+ 877 0000 61766572 		.ascii	"averageCounts\000"
+ 877      61676543 
+ 877      6F756E74 
+ 877      7300
+ 878              	.LASF35:
+ 879 000e 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\Technical Topics\\PSoC"
+ 879      73657273 
+ 879      5C446176 
+ 879      69645C44 
+ 879      6F63756D 
+ 880 003c 20437265 		.ascii	" Creator Projects\\NotePerfect\\NotePerfect.cydsn\000"
+ 880      61746F72 
+ 880      2050726F 
+ 880      6A656374 
+ 880      735C4E6F 
+ 881              	.LASF33:
+ 882 006c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 882      43313120 
+ 882      352E342E 
+ 882      31203230 
+ 882      31363036 
+ 883 009f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 883      20726576 
+ 883      6973696F 
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 21
+
+
+ 883      6E203233 
+ 883      37373135 
+ 884 00d2 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 884      66756E63 
+ 884      74696F6E 
+ 884      2D736563 
+ 884      74696F6E 
+ 885              	.LASF5:
+ 886 00fa 5F5F696E 		.ascii	"__int32_t\000"
+ 886      7433325F 
+ 886      7400
+ 887              	.LASF3:
+ 888 0104 73686F72 		.ascii	"short unsigned int\000"
+ 888      7420756E 
+ 888      7369676E 
+ 888      65642069 
+ 888      6E7400
+ 889              	.LASF18:
+ 890 0117 646F7562 		.ascii	"double\000"
+ 890      6C6500
+ 891              	.LASF17:
+ 892 011e 666C6F61 		.ascii	"float\000"
+ 892      7400
+ 893              	.LASF13:
+ 894 0124 75696E74 		.ascii	"uint8\000"
+ 894      3800
+ 895              	.LASF1:
+ 896 012a 756E7369 		.ascii	"unsigned char\000"
+ 896      676E6564 
+ 896      20636861 
+ 896      7200
+ 897              	.LASF32:
+ 898 0138 50574D5F 		.ascii	"PWM_Lookup\000"
+ 898      4C6F6F6B 
+ 898      757000
+ 899              	.LASF15:
+ 900 0143 696E7431 		.ascii	"int16\000"
+ 900      3600
+ 901              	.LASF28:
+ 902 0149 6E6F7465 		.ascii	"notePerfectValue\000"
+ 902      50657266 
+ 902      65637456 
+ 902      616C7565 
+ 902      00
+ 903              	.LASF16:
+ 904 015a 696E7433 		.ascii	"int32\000"
+ 904      3200
+ 905              	.LASF31:
+ 906 0160 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 906      52784275 
+ 906      66666572 
+ 906      00
+ 907              	.LASF25:
+ 908 016d 6D696C6C 		.ascii	"milliVolts\000"
+ 908      69566F6C 
+ 908      747300
+ 909              	.LASF4:
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 22
+
+
+ 910 0178 5F5F7569 		.ascii	"__uint16_t\000"
+ 910      6E743136 
+ 910      5F7400
+ 911              	.LASF7:
+ 912 0183 6C6F6E67 		.ascii	"long unsigned int\000"
+ 912      20756E73 
+ 912      69676E65 
+ 912      6420696E 
+ 912      7400
+ 913              	.LASF36:
+ 914 0195 6D61696E 		.ascii	"main\000"
+ 914      00
+ 915              	.LASF22:
+ 916 019a 61646343 		.ascii	"adcCounts\000"
+ 916      6F756E74 
+ 916      7300
+ 917              	.LASF14:
+ 918 01a4 75696E74 		.ascii	"uint32\000"
+ 918      333200
+ 919              	.LASF10:
+ 920 01ab 756E7369 		.ascii	"unsigned int\000"
+ 920      676E6564 
+ 920      20696E74 
+ 920      00
+ 921              	.LASF9:
+ 922 01b8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 922      206C6F6E 
+ 922      6720756E 
+ 922      7369676E 
+ 922      65642069 
+ 923              	.LASF23:
+ 924 01cf 72657375 		.ascii	"result\000"
+ 924      6C7400
+ 925              	.LASF12:
+ 926 01d6 696E7433 		.ascii	"int32_t\000"
+ 926      325F7400 
+ 927              	.LASF21:
+ 928 01de 73697A65 		.ascii	"sizetype\000"
+ 928      74797065 
+ 928      00
+ 929              	.LASF24:
+ 930 01e7 64696666 		.ascii	"diff\000"
+ 930      00
+ 931              	.LASF8:
+ 932 01ec 6C6F6E67 		.ascii	"long long int\000"
+ 932      206C6F6E 
+ 932      6720696E 
+ 932      7400
+ 933              	.LASF34:
+ 934 01fa 6D61696E 		.ascii	"main.c\000"
+ 934      2E6300
+ 935              	.LASF19:
+ 936 0201 63686172 		.ascii	"char\000"
+ 936      00
+ 937              	.LASF27:
+ 938 0206 696E6465 		.ascii	"index\000"
+ 938      7800
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccfeALad.s 			page 23
+
+
+ 939              	.LASF30:
+ 940 020c 64697370 		.ascii	"displayStr\000"
+ 940      6C617953 
+ 940      747200
+ 941              	.LASF2:
+ 942 0217 73686F72 		.ascii	"short int\000"
+ 942      7420696E 
+ 942      7400
+ 943              	.LASF11:
+ 944 0221 75696E74 		.ascii	"uint16_t\000"
+ 944      31365F74 
+ 944      00
+ 945              	.LASF6:
+ 946 022a 6C6F6E67 		.ascii	"long int\000"
+ 946      20696E74 
+ 946      00
+ 947              	.LASF29:
+ 948 0233 72656D61 		.ascii	"remainder\000"
+ 948      696E6465 
+ 948      7200
+ 949              	.LASF20:
+ 950 023d 6C6F6E67 		.ascii	"long double\000"
+ 950      20646F75 
+ 950      626C6500 
+ 951              	.LASF0:
+ 952 0249 7369676E 		.ascii	"signed char\000"
+ 952      65642063 
+ 952      68617200 
+ 953              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
