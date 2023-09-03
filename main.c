@@ -84,6 +84,12 @@
 /* NotePerfect step size (in mV) */
 #define NOTEPERFECT_STEP_SIZE_MV    ((MAX_CONTROL_VOLTAGE * 1000) / NUMBER_NOTE_PERFECT_VOLTAGES)
 
+uint16_t PWM_Lookup[] = {0, 83, 167, 250, 333, 417, 500, 583, 667, 750, 833, 917, 1000,
+                            1083, 1167, 1250, 1333, 1417, 1500, 1583, 1667, 1750, 1833, 1917, 2000,
+                            2083, 2167, 2250, 2333, 2417, 2500, 2583, 2667, 2750, 2833, 2917, 3000,
+                            3083, 3167, 3250, 3333, 3417, 3500, 3583, 3667, 3750, 3833, 3917, 4000,
+                            4083, 4167, 4250, 4333, 4417, 4500, 4583, 4667, 4750, 4833, 4917, 5000};
+
 int main(void)
 {
     uint8 i;
@@ -153,18 +159,23 @@ int main(void)
     /* start DAC and Opamp */
     VDAC_Start();               
     Opamp_Start();
+    PWM_Start();
     
-//    while(1)
-//    {
-//        for(uint16_t i = 0; i < 32; i++)
-//        {
+    while(1)
+    {
+        for(uint16_t i = 0; i < 60; i++)
+        {
 //            VDAC_SetValue((i * 8) - 0);
-//            sprintf(displayStr,"%3d", i * 8);
-//            LCD_Position(1,13);
-//            LCD_PrintString(displayStr);
-//            CyDelay(5000);
-//        }
-//    }
+            PWM_WriteCompare(PWM_Lookup[i]);
+            sprintf(displayStr,"%3d", i);
+            LCD_Position(0,13);
+            LCD_PrintString(displayStr);
+            sprintf(displayStr,"%4d", PWM_Lookup[i]);
+            LCD_Position(1,12);
+            LCD_PrintString(displayStr);
+            CyDelay(3000);
+        }
+    }
     
     while(1)
     {
