@@ -202,13 +202,13 @@ int main(void)
                 index = 0;
             }
         }
-        milliVolts = ADC_CountsTo_mVolts(averageCounts);
+        milliVolts = ADC_CountsTo_mVolts(averageCounts); /* convert ADC counts to milliVolts */
         
-        notePerfectValue = (milliVolts / NOTEPERFECT_STEP_SIZE_MV);
-        remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV;
-        if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2)
+        notePerfectValue = (milliVolts / NOTEPERFECT_STEP_SIZE_MV); /* calculate integer step number */
+        remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV; /* use modulo to get remainder */
+        if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2) /* determine if round-up is necessary */
             notePerfectValue += 1;
-        PWM_WriteCompare(PWM_Lookup[notePerfectValue]);
+        PWM_WriteCompare(PWM_Lookup[notePerfectValue]); /* lookup PWM compare value and update PWM */
         sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
         LCD_Position(1,12);
         LCD_PrintString(displayStr);
