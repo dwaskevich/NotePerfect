@@ -11490,386 +11490,526 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  184              	.set LCD_LCDPort__SHIFT, 0
  185              	.set LCD_LCDPort__SLW, CYREG_PRT2_SLW
  186              	
- 187              	/* Led */
- 188              	.set Led__0__INTTYPE, CYREG_PICU6_INTTYPE0
- 189              	.set Led__0__MASK, 0x01
- 190              	.set Led__0__PC, CYREG_PRT6_PC0
- 191              	.set Led__0__PORT, 6
- 192              	.set Led__0__SHIFT, 0
- 193              	.set Led__AG, CYREG_PRT6_AG
- 194              	.set Led__AMUX, CYREG_PRT6_AMUX
- 195              	.set Led__BIE, CYREG_PRT6_BIE
- 196              	.set Led__BIT_MASK, CYREG_PRT6_BIT_MASK
- 197              	.set Led__BYP, CYREG_PRT6_BYP
- 198              	.set Led__CTL, CYREG_PRT6_CTL
- 199              	.set Led__DM0, CYREG_PRT6_DM0
- 200              	.set Led__DM1, CYREG_PRT6_DM1
- 201              	.set Led__DM2, CYREG_PRT6_DM2
- 202              	.set Led__DR, CYREG_PRT6_DR
- 203              	.set Led__INP_DIS, CYREG_PRT6_INP_DIS
- 204              	.set Led__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
- 205              	.set Led__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
- 206              	.set Led__LCD_EN, CYREG_PRT6_LCD_EN
- 207              	.set Led__MASK, 0x01
- 208              	.set Led__PORT, 6
- 209              	.set Led__PRT, CYREG_PRT6_PRT
- 210              	.set Led__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
- 211              	.set Led__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
- 212              	.set Led__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
- 213              	.set Led__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
- 214              	.set Led__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
+ 187              	/* PWM */
+ 188              	.set PWM_Out__0__INTTYPE, CYREG_PICU0_INTTYPE7
+ 189              	.set PWM_Out__0__MASK, 0x80
+ 190              	.set PWM_Out__0__PC, CYREG_PRT0_PC7
+ 191              	.set PWM_Out__0__PORT, 0
+ 192              	.set PWM_Out__0__SHIFT, 7
+ 193              	.set PWM_Out__AG, CYREG_PRT0_AG
+ 194              	.set PWM_Out__AMUX, CYREG_PRT0_AMUX
+ 195              	.set PWM_Out__BIE, CYREG_PRT0_BIE
+ 196              	.set PWM_Out__BIT_MASK, CYREG_PRT0_BIT_MASK
+ 197              	.set PWM_Out__BYP, CYREG_PRT0_BYP
+ 198              	.set PWM_Out__CTL, CYREG_PRT0_CTL
+ 199              	.set PWM_Out__DM0, CYREG_PRT0_DM0
+ 200              	.set PWM_Out__DM1, CYREG_PRT0_DM1
+ 201              	.set PWM_Out__DM2, CYREG_PRT0_DM2
+ 202              	.set PWM_Out__DR, CYREG_PRT0_DR
+ 203              	.set PWM_Out__INP_DIS, CYREG_PRT0_INP_DIS
+ 204              	.set PWM_Out__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU0_BASE
+ 205              	.set PWM_Out__LCD_COM_SEG, CYREG_PRT0_LCD_COM_SEG
+ 206              	.set PWM_Out__LCD_EN, CYREG_PRT0_LCD_EN
+ 207              	.set PWM_Out__MASK, 0x80
+ 208              	.set PWM_Out__PORT, 0
+ 209              	.set PWM_Out__PRT, CYREG_PRT0_PRT
+ 210              	.set PWM_Out__PRTDSI__CAPS_SEL, CYREG_PRT0_CAPS_SEL
+ 211              	.set PWM_Out__PRTDSI__DBL_SYNC_IN, CYREG_PRT0_DBL_SYNC_IN
+ 212              	.set PWM_Out__PRTDSI__OE_SEL0, CYREG_PRT0_OE_SEL0
+ 213              	.set PWM_Out__PRTDSI__OE_SEL1, CYREG_PRT0_OE_SEL1
+ 214              	.set PWM_Out__PRTDSI__OUT_SEL0, CYREG_PRT0_OUT_SEL0
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 193
 
 
- 215              	.set Led__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
- 216              	.set Led__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
- 217              	.set Led__PS, CYREG_PRT6_PS
- 218              	.set Led__SHIFT, 0
- 219              	.set Led__SLW, CYREG_PRT6_SLW
- 220              	
- 221              	/* PWM */
- 222              	.set PWM_Out__0__INTTYPE, CYREG_PICU0_INTTYPE7
- 223              	.set PWM_Out__0__MASK, 0x80
- 224              	.set PWM_Out__0__PC, CYREG_PRT0_PC7
- 225              	.set PWM_Out__0__PORT, 0
- 226              	.set PWM_Out__0__SHIFT, 7
- 227              	.set PWM_Out__AG, CYREG_PRT0_AG
- 228              	.set PWM_Out__AMUX, CYREG_PRT0_AMUX
- 229              	.set PWM_Out__BIE, CYREG_PRT0_BIE
- 230              	.set PWM_Out__BIT_MASK, CYREG_PRT0_BIT_MASK
- 231              	.set PWM_Out__BYP, CYREG_PRT0_BYP
- 232              	.set PWM_Out__CTL, CYREG_PRT0_CTL
- 233              	.set PWM_Out__DM0, CYREG_PRT0_DM0
- 234              	.set PWM_Out__DM1, CYREG_PRT0_DM1
- 235              	.set PWM_Out__DM2, CYREG_PRT0_DM2
- 236              	.set PWM_Out__DR, CYREG_PRT0_DR
- 237              	.set PWM_Out__INP_DIS, CYREG_PRT0_INP_DIS
- 238              	.set PWM_Out__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU0_BASE
- 239              	.set PWM_Out__LCD_COM_SEG, CYREG_PRT0_LCD_COM_SEG
- 240              	.set PWM_Out__LCD_EN, CYREG_PRT0_LCD_EN
- 241              	.set PWM_Out__MASK, 0x80
- 242              	.set PWM_Out__PORT, 0
- 243              	.set PWM_Out__PRT, CYREG_PRT0_PRT
- 244              	.set PWM_Out__PRTDSI__CAPS_SEL, CYREG_PRT0_CAPS_SEL
- 245              	.set PWM_Out__PRTDSI__DBL_SYNC_IN, CYREG_PRT0_DBL_SYNC_IN
- 246              	.set PWM_Out__PRTDSI__OE_SEL0, CYREG_PRT0_OE_SEL0
- 247              	.set PWM_Out__PRTDSI__OE_SEL1, CYREG_PRT0_OE_SEL1
- 248              	.set PWM_Out__PRTDSI__OUT_SEL0, CYREG_PRT0_OUT_SEL0
- 249              	.set PWM_Out__PRTDSI__OUT_SEL1, CYREG_PRT0_OUT_SEL1
- 250              	.set PWM_Out__PRTDSI__SYNC_OUT, CYREG_PRT0_SYNC_OUT
- 251              	.set PWM_Out__PS, CYREG_PRT0_PS
- 252              	.set PWM_Out__SHIFT, 7
- 253              	.set PWM_Out__SLW, CYREG_PRT0_SLW
- 254              	.set PWM_PWMHW__CAP0, CYREG_TMR0_CAP0
- 255              	.set PWM_PWMHW__CAP1, CYREG_TMR0_CAP1
- 256              	.set PWM_PWMHW__CFG0, CYREG_TMR0_CFG0
- 257              	.set PWM_PWMHW__CFG1, CYREG_TMR0_CFG1
- 258              	.set PWM_PWMHW__CFG2, CYREG_TMR0_CFG2
- 259              	.set PWM_PWMHW__CNT_CMP0, CYREG_TMR0_CNT_CMP0
- 260              	.set PWM_PWMHW__CNT_CMP1, CYREG_TMR0_CNT_CMP1
- 261              	.set PWM_PWMHW__PER0, CYREG_TMR0_PER0
- 262              	.set PWM_PWMHW__PER1, CYREG_TMR0_PER1
- 263              	.set PWM_PWMHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
- 264              	.set PWM_PWMHW__PM_ACT_MSK, 0x01
- 265              	.set PWM_PWMHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
- 266              	.set PWM_PWMHW__PM_STBY_MSK, 0x01
- 267              	.set PWM_PWMHW__RT0, CYREG_TMR0_RT0
- 268              	.set PWM_PWMHW__RT1, CYREG_TMR0_RT1
- 269              	.set PWM_PWMHW__SR0, CYREG_TMR0_SR0
+ 215              	.set PWM_Out__PRTDSI__OUT_SEL1, CYREG_PRT0_OUT_SEL1
+ 216              	.set PWM_Out__PRTDSI__SYNC_OUT, CYREG_PRT0_SYNC_OUT
+ 217              	.set PWM_Out__PS, CYREG_PRT0_PS
+ 218              	.set PWM_Out__SHIFT, 7
+ 219              	.set PWM_Out__SLW, CYREG_PRT0_SLW
+ 220              	.set PWM_PWMHW__CAP0, CYREG_TMR0_CAP0
+ 221              	.set PWM_PWMHW__CAP1, CYREG_TMR0_CAP1
+ 222              	.set PWM_PWMHW__CFG0, CYREG_TMR0_CFG0
+ 223              	.set PWM_PWMHW__CFG1, CYREG_TMR0_CFG1
+ 224              	.set PWM_PWMHW__CFG2, CYREG_TMR0_CFG2
+ 225              	.set PWM_PWMHW__CNT_CMP0, CYREG_TMR0_CNT_CMP0
+ 226              	.set PWM_PWMHW__CNT_CMP1, CYREG_TMR0_CNT_CMP1
+ 227              	.set PWM_PWMHW__PER0, CYREG_TMR0_PER0
+ 228              	.set PWM_PWMHW__PER1, CYREG_TMR0_PER1
+ 229              	.set PWM_PWMHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+ 230              	.set PWM_PWMHW__PM_ACT_MSK, 0x01
+ 231              	.set PWM_PWMHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
+ 232              	.set PWM_PWMHW__PM_STBY_MSK, 0x01
+ 233              	.set PWM_PWMHW__RT0, CYREG_TMR0_RT0
+ 234              	.set PWM_PWMHW__RT1, CYREG_TMR0_RT1
+ 235              	.set PWM_PWMHW__SR0, CYREG_TMR0_SR0
+ 236              	
+ 237              	/* SW2 */
+ 238              	.set SW2__0__INTTYPE, CYREG_PICU6_INTTYPE1
+ 239              	.set SW2__0__MASK, 0x02
+ 240              	.set SW2__0__PC, CYREG_PRT6_PC1
+ 241              	.set SW2__0__PORT, 6
+ 242              	.set SW2__0__SHIFT, 1
+ 243              	.set SW2__AG, CYREG_PRT6_AG
+ 244              	.set SW2__AMUX, CYREG_PRT6_AMUX
+ 245              	.set SW2__BIE, CYREG_PRT6_BIE
+ 246              	.set SW2__BIT_MASK, CYREG_PRT6_BIT_MASK
+ 247              	.set SW2__BYP, CYREG_PRT6_BYP
+ 248              	.set SW2__CTL, CYREG_PRT6_CTL
+ 249              	.set SW2__DM0, CYREG_PRT6_DM0
+ 250              	.set SW2__DM1, CYREG_PRT6_DM1
+ 251              	.set SW2__DM2, CYREG_PRT6_DM2
+ 252              	.set SW2__DR, CYREG_PRT6_DR
+ 253              	.set SW2__INP_DIS, CYREG_PRT6_INP_DIS
+ 254              	.set SW2__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
+ 255              	.set SW2__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
+ 256              	.set SW2__LCD_EN, CYREG_PRT6_LCD_EN
+ 257              	.set SW2__MASK, 0x02
+ 258              	.set SW2__PORT, 6
+ 259              	.set SW2__PRT, CYREG_PRT6_PRT
+ 260              	.set SW2__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
+ 261              	.set SW2__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
+ 262              	.set SW2__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
+ 263              	.set SW2__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
+ 264              	.set SW2__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
+ 265              	.set SW2__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
+ 266              	.set SW2__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
+ 267              	.set SW2__PS, CYREG_PRT6_PS
+ 268              	.set SW2__SHIFT, 1
+ 269              	.set SW2__SLW, CYREG_PRT6_SLW
  270              	
- 271              	/* Opamp */
+ 271              	/* LED3 */
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 194
 
 
- 272              	.set Opamp_ABuf__CR, CYREG_OPAMP3_CR
- 273              	.set Opamp_ABuf__MX, CYREG_OPAMP3_MX
- 274              	.set Opamp_ABuf__NPUMP_OPAMP_TR0, CYREG_NPUMP_OPAMP_TR0
- 275              	.set Opamp_ABuf__PM_ACT_CFG, CYREG_PM_ACT_CFG4
- 276              	.set Opamp_ABuf__PM_ACT_MSK, 0x08
- 277              	.set Opamp_ABuf__PM_STBY_CFG, CYREG_PM_STBY_CFG4
- 278              	.set Opamp_ABuf__PM_STBY_MSK, 0x08
- 279              	.set Opamp_ABuf__RSVD, CYREG_OPAMP3_RSVD
- 280              	.set Opamp_ABuf__SW, CYREG_OPAMP3_SW
- 281              	.set Opamp_ABuf__TR0, CYREG_OPAMP3_TR0
- 282              	.set Opamp_ABuf__TR1, CYREG_OPAMP3_TR1
- 283              	
- 284              	/* AnalogIn */
- 285              	.set AnalogIn__0__INTTYPE, CYREG_PICU3_INTTYPE3
- 286              	.set AnalogIn__0__MASK, 0x08
- 287              	.set AnalogIn__0__PC, CYREG_PRT3_PC3
- 288              	.set AnalogIn__0__PORT, 3
- 289              	.set AnalogIn__0__SHIFT, 3
- 290              	.set AnalogIn__AG, CYREG_PRT3_AG
- 291              	.set AnalogIn__AMUX, CYREG_PRT3_AMUX
- 292              	.set AnalogIn__BIE, CYREG_PRT3_BIE
- 293              	.set AnalogIn__BIT_MASK, CYREG_PRT3_BIT_MASK
- 294              	.set AnalogIn__BYP, CYREG_PRT3_BYP
- 295              	.set AnalogIn__CTL, CYREG_PRT3_CTL
- 296              	.set AnalogIn__DM0, CYREG_PRT3_DM0
- 297              	.set AnalogIn__DM1, CYREG_PRT3_DM1
- 298              	.set AnalogIn__DM2, CYREG_PRT3_DM2
- 299              	.set AnalogIn__DR, CYREG_PRT3_DR
- 300              	.set AnalogIn__INP_DIS, CYREG_PRT3_INP_DIS
- 301              	.set AnalogIn__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
- 302              	.set AnalogIn__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
- 303              	.set AnalogIn__LCD_EN, CYREG_PRT3_LCD_EN
- 304              	.set AnalogIn__MASK, 0x08
- 305              	.set AnalogIn__PORT, 3
- 306              	.set AnalogIn__PRT, CYREG_PRT3_PRT
- 307              	.set AnalogIn__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
- 308              	.set AnalogIn__PRTDSI__DBL_SYNC_IN, CYREG_PRT3_DBL_SYNC_IN
- 309              	.set AnalogIn__PRTDSI__OE_SEL0, CYREG_PRT3_OE_SEL0
- 310              	.set AnalogIn__PRTDSI__OE_SEL1, CYREG_PRT3_OE_SEL1
- 311              	.set AnalogIn__PRTDSI__OUT_SEL0, CYREG_PRT3_OUT_SEL0
- 312              	.set AnalogIn__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
- 313              	.set AnalogIn__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
- 314              	.set AnalogIn__PS, CYREG_PRT3_PS
- 315              	.set AnalogIn__SHIFT, 3
- 316              	.set AnalogIn__SLW, CYREG_PRT3_SLW
- 317              	
- 318              	/* VoltInput */
- 319              	.set VoltInput__0__INTTYPE, CYREG_PICU6_INTTYPE5
- 320              	.set VoltInput__0__MASK, 0x20
- 321              	.set VoltInput__0__PC, CYREG_PRT6_PC5
- 322              	.set VoltInput__0__PORT, 6
- 323              	.set VoltInput__0__SHIFT, 5
- 324              	.set VoltInput__AG, CYREG_PRT6_AG
- 325              	.set VoltInput__AMUX, CYREG_PRT6_AMUX
- 326              	.set VoltInput__BIE, CYREG_PRT6_BIE
- 327              	.set VoltInput__BIT_MASK, CYREG_PRT6_BIT_MASK
- 328              	.set VoltInput__BYP, CYREG_PRT6_BYP
+ 272              	.set LED3__0__INTTYPE, CYREG_PICU6_INTTYPE2
+ 273              	.set LED3__0__MASK, 0x04
+ 274              	.set LED3__0__PC, CYREG_PRT6_PC2
+ 275              	.set LED3__0__PORT, 6
+ 276              	.set LED3__0__SHIFT, 2
+ 277              	.set LED3__AG, CYREG_PRT6_AG
+ 278              	.set LED3__AMUX, CYREG_PRT6_AMUX
+ 279              	.set LED3__BIE, CYREG_PRT6_BIE
+ 280              	.set LED3__BIT_MASK, CYREG_PRT6_BIT_MASK
+ 281              	.set LED3__BYP, CYREG_PRT6_BYP
+ 282              	.set LED3__CTL, CYREG_PRT6_CTL
+ 283              	.set LED3__DM0, CYREG_PRT6_DM0
+ 284              	.set LED3__DM1, CYREG_PRT6_DM1
+ 285              	.set LED3__DM2, CYREG_PRT6_DM2
+ 286              	.set LED3__DR, CYREG_PRT6_DR
+ 287              	.set LED3__INP_DIS, CYREG_PRT6_INP_DIS
+ 288              	.set LED3__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
+ 289              	.set LED3__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
+ 290              	.set LED3__LCD_EN, CYREG_PRT6_LCD_EN
+ 291              	.set LED3__MASK, 0x04
+ 292              	.set LED3__PORT, 6
+ 293              	.set LED3__PRT, CYREG_PRT6_PRT
+ 294              	.set LED3__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
+ 295              	.set LED3__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
+ 296              	.set LED3__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
+ 297              	.set LED3__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
+ 298              	.set LED3__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
+ 299              	.set LED3__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
+ 300              	.set LED3__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
+ 301              	.set LED3__PS, CYREG_PRT6_PS
+ 302              	.set LED3__SHIFT, 2
+ 303              	.set LED3__SLW, CYREG_PRT6_SLW
+ 304              	
+ 305              	/* LED4 */
+ 306              	.set LED4__0__INTTYPE, CYREG_PICU6_INTTYPE3
+ 307              	.set LED4__0__MASK, 0x08
+ 308              	.set LED4__0__PC, CYREG_PRT6_PC3
+ 309              	.set LED4__0__PORT, 6
+ 310              	.set LED4__0__SHIFT, 3
+ 311              	.set LED4__AG, CYREG_PRT6_AG
+ 312              	.set LED4__AMUX, CYREG_PRT6_AMUX
+ 313              	.set LED4__BIE, CYREG_PRT6_BIE
+ 314              	.set LED4__BIT_MASK, CYREG_PRT6_BIT_MASK
+ 315              	.set LED4__BYP, CYREG_PRT6_BYP
+ 316              	.set LED4__CTL, CYREG_PRT6_CTL
+ 317              	.set LED4__DM0, CYREG_PRT6_DM0
+ 318              	.set LED4__DM1, CYREG_PRT6_DM1
+ 319              	.set LED4__DM2, CYREG_PRT6_DM2
+ 320              	.set LED4__DR, CYREG_PRT6_DR
+ 321              	.set LED4__INP_DIS, CYREG_PRT6_INP_DIS
+ 322              	.set LED4__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
+ 323              	.set LED4__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
+ 324              	.set LED4__LCD_EN, CYREG_PRT6_LCD_EN
+ 325              	.set LED4__MASK, 0x08
+ 326              	.set LED4__PORT, 6
+ 327              	.set LED4__PRT, CYREG_PRT6_PRT
+ 328              	.set LED4__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 195
 
 
- 329              	.set VoltInput__CTL, CYREG_PRT6_CTL
- 330              	.set VoltInput__DM0, CYREG_PRT6_DM0
- 331              	.set VoltInput__DM1, CYREG_PRT6_DM1
- 332              	.set VoltInput__DM2, CYREG_PRT6_DM2
- 333              	.set VoltInput__DR, CYREG_PRT6_DR
- 334              	.set VoltInput__INP_DIS, CYREG_PRT6_INP_DIS
- 335              	.set VoltInput__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
- 336              	.set VoltInput__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
- 337              	.set VoltInput__LCD_EN, CYREG_PRT6_LCD_EN
- 338              	.set VoltInput__MASK, 0x20
- 339              	.set VoltInput__PORT, 6
- 340              	.set VoltInput__PRT, CYREG_PRT6_PRT
- 341              	.set VoltInput__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
- 342              	.set VoltInput__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
- 343              	.set VoltInput__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
- 344              	.set VoltInput__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
- 345              	.set VoltInput__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
- 346              	.set VoltInput__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
- 347              	.set VoltInput__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
- 348              	.set VoltInput__PS, CYREG_PRT6_PS
- 349              	.set VoltInput__SHIFT, 5
- 350              	.set VoltInput__SLW, CYREG_PRT6_SLW
- 351              	
- 352              	/* Miscellaneous */
- 353              	.set BCLK__BUS_CLK__HZ, 48000000
- 354              	.set BCLK__BUS_CLK__KHZ, 48000
- 355              	.set BCLK__BUS_CLK__MHZ, 48
- 356              	.set CYDEV_CHIP_DIE_LEOPARD, 1
- 357              	.set CYDEV_CHIP_DIE_PSOC4A, 18
- 358              	.set CYDEV_CHIP_DIE_PSOC5LP, 2
- 359              	.set CYDEV_CHIP_DIE_PSOC5TM, 3
- 360              	.set CYDEV_CHIP_DIE_TMA4, 4
- 361              	.set CYDEV_CHIP_DIE_UNKNOWN, 0
- 362              	.set CYDEV_CHIP_FAMILY_FM0P, 5
- 363              	.set CYDEV_CHIP_FAMILY_FM3, 6
- 364              	.set CYDEV_CHIP_FAMILY_FM4, 7
- 365              	.set CYDEV_CHIP_FAMILY_PSOC3, 1
- 366              	.set CYDEV_CHIP_FAMILY_PSOC4, 2
- 367              	.set CYDEV_CHIP_FAMILY_PSOC5, 3
- 368              	.set CYDEV_CHIP_FAMILY_PSOC6, 4
- 369              	.set CYDEV_CHIP_FAMILY_UNKNOWN, 0
- 370              	.set CYDEV_CHIP_FAMILY_USED, CYDEV_CHIP_FAMILY_PSOC5
- 371              	.set CYDEV_CHIP_JTAG_ID, 0x2E123069
- 372              	.set CYDEV_CHIP_MEMBER_3A, 1
- 373              	.set CYDEV_CHIP_MEMBER_4A, 18
- 374              	.set CYDEV_CHIP_MEMBER_4D, 13
- 375              	.set CYDEV_CHIP_MEMBER_4E, 6
- 376              	.set CYDEV_CHIP_MEMBER_4F, 19
- 377              	.set CYDEV_CHIP_MEMBER_4G, 4
- 378              	.set CYDEV_CHIP_MEMBER_4H, 17
- 379              	.set CYDEV_CHIP_MEMBER_4I, 23
- 380              	.set CYDEV_CHIP_MEMBER_4J, 14
- 381              	.set CYDEV_CHIP_MEMBER_4K, 15
- 382              	.set CYDEV_CHIP_MEMBER_4L, 22
- 383              	.set CYDEV_CHIP_MEMBER_4M, 21
- 384              	.set CYDEV_CHIP_MEMBER_4N, 10
- 385              	.set CYDEV_CHIP_MEMBER_4O, 7
+ 329              	.set LED4__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
+ 330              	.set LED4__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
+ 331              	.set LED4__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
+ 332              	.set LED4__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
+ 333              	.set LED4__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
+ 334              	.set LED4__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
+ 335              	.set LED4__PS, CYREG_PRT6_PS
+ 336              	.set LED4__SHIFT, 3
+ 337              	.set LED4__SLW, CYREG_PRT6_SLW
+ 338              	
+ 339              	/* Vout */
+ 340              	.set Vout__0__INTTYPE, CYREG_PICU3_INTTYPE7
+ 341              	.set Vout__0__MASK, 0x80
+ 342              	.set Vout__0__PC, CYREG_PRT3_PC7
+ 343              	.set Vout__0__PORT, 3
+ 344              	.set Vout__0__SHIFT, 7
+ 345              	.set Vout__AG, CYREG_PRT3_AG
+ 346              	.set Vout__AMUX, CYREG_PRT3_AMUX
+ 347              	.set Vout__BIE, CYREG_PRT3_BIE
+ 348              	.set Vout__BIT_MASK, CYREG_PRT3_BIT_MASK
+ 349              	.set Vout__BYP, CYREG_PRT3_BYP
+ 350              	.set Vout__CTL, CYREG_PRT3_CTL
+ 351              	.set Vout__DM0, CYREG_PRT3_DM0
+ 352              	.set Vout__DM1, CYREG_PRT3_DM1
+ 353              	.set Vout__DM2, CYREG_PRT3_DM2
+ 354              	.set Vout__DR, CYREG_PRT3_DR
+ 355              	.set Vout__INP_DIS, CYREG_PRT3_INP_DIS
+ 356              	.set Vout__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
+ 357              	.set Vout__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
+ 358              	.set Vout__LCD_EN, CYREG_PRT3_LCD_EN
+ 359              	.set Vout__MASK, 0x80
+ 360              	.set Vout__PORT, 3
+ 361              	.set Vout__PRT, CYREG_PRT3_PRT
+ 362              	.set Vout__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
+ 363              	.set Vout__PRTDSI__DBL_SYNC_IN, CYREG_PRT3_DBL_SYNC_IN
+ 364              	.set Vout__PRTDSI__OE_SEL0, CYREG_PRT3_OE_SEL0
+ 365              	.set Vout__PRTDSI__OE_SEL1, CYREG_PRT3_OE_SEL1
+ 366              	.set Vout__PRTDSI__OUT_SEL0, CYREG_PRT3_OUT_SEL0
+ 367              	.set Vout__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
+ 368              	.set Vout__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
+ 369              	.set Vout__PS, CYREG_PRT3_PS
+ 370              	.set Vout__SHIFT, 7
+ 371              	.set Vout__SLW, CYREG_PRT3_SLW
+ 372              	
+ 373              	/* Opamp */
+ 374              	.set Opamp_ABuf__CR, CYREG_OPAMP3_CR
+ 375              	.set Opamp_ABuf__MX, CYREG_OPAMP3_MX
+ 376              	.set Opamp_ABuf__NPUMP_OPAMP_TR0, CYREG_NPUMP_OPAMP_TR0
+ 377              	.set Opamp_ABuf__PM_ACT_CFG, CYREG_PM_ACT_CFG4
+ 378              	.set Opamp_ABuf__PM_ACT_MSK, 0x08
+ 379              	.set Opamp_ABuf__PM_STBY_CFG, CYREG_PM_STBY_CFG4
+ 380              	.set Opamp_ABuf__PM_STBY_MSK, 0x08
+ 381              	.set Opamp_ABuf__RSVD, CYREG_OPAMP3_RSVD
+ 382              	.set Opamp_ABuf__SW, CYREG_OPAMP3_SW
+ 383              	.set Opamp_ABuf__TR0, CYREG_OPAMP3_TR0
+ 384              	.set Opamp_ABuf__TR1, CYREG_OPAMP3_TR1
+ 385              	
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 196
 
 
- 386              	.set CYDEV_CHIP_MEMBER_4P, 20
- 387              	.set CYDEV_CHIP_MEMBER_4Q, 12
- 388              	.set CYDEV_CHIP_MEMBER_4R, 8
- 389              	.set CYDEV_CHIP_MEMBER_4S, 11
- 390              	.set CYDEV_CHIP_MEMBER_4T, 9
- 391              	.set CYDEV_CHIP_MEMBER_4U, 5
- 392              	.set CYDEV_CHIP_MEMBER_4V, 16
- 393              	.set CYDEV_CHIP_MEMBER_5A, 3
- 394              	.set CYDEV_CHIP_MEMBER_5B, 2
- 395              	.set CYDEV_CHIP_MEMBER_6A, 24
- 396              	.set CYDEV_CHIP_MEMBER_FM3, 28
- 397              	.set CYDEV_CHIP_MEMBER_FM4, 29
- 398              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE1, 25
- 399              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE2, 26
- 400              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE3, 27
- 401              	.set CYDEV_CHIP_MEMBER_UNKNOWN, 0
- 402              	.set CYDEV_CHIP_MEMBER_USED, CYDEV_CHIP_MEMBER_5B
- 403              	.set CYDEV_CHIP_DIE_EXPECT, CYDEV_CHIP_MEMBER_USED
- 404              	.set CYDEV_CHIP_DIE_ACTUAL, CYDEV_CHIP_DIE_EXPECT
- 405              	.set CYDEV_CHIP_REV_LEOPARD_ES1, 0
- 406              	.set CYDEV_CHIP_REV_LEOPARD_ES2, 1
- 407              	.set CYDEV_CHIP_REV_LEOPARD_ES3, 3
- 408              	.set CYDEV_CHIP_REV_LEOPARD_PRODUCTION, 3
- 409              	.set CYDEV_CHIP_REV_PSOC4A_ES0, 17
- 410              	.set CYDEV_CHIP_REV_PSOC4A_PRODUCTION, 17
- 411              	.set CYDEV_CHIP_REV_PSOC5LP_ES0, 0
- 412              	.set CYDEV_CHIP_REV_PSOC5LP_PRODUCTION, 0
- 413              	.set CYDEV_CHIP_REV_PSOC5TM_ES0, 0
- 414              	.set CYDEV_CHIP_REV_PSOC5TM_ES1, 1
- 415              	.set CYDEV_CHIP_REV_PSOC5TM_PRODUCTION, 1
- 416              	.set CYDEV_CHIP_REV_TMA4_ES, 17
- 417              	.set CYDEV_CHIP_REV_TMA4_ES2, 33
- 418              	.set CYDEV_CHIP_REV_TMA4_PRODUCTION, 17
- 419              	.set CYDEV_CHIP_REVISION_3A_ES1, 0
- 420              	.set CYDEV_CHIP_REVISION_3A_ES2, 1
- 421              	.set CYDEV_CHIP_REVISION_3A_ES3, 3
- 422              	.set CYDEV_CHIP_REVISION_3A_PRODUCTION, 3
- 423              	.set CYDEV_CHIP_REVISION_4A_ES0, 17
- 424              	.set CYDEV_CHIP_REVISION_4A_PRODUCTION, 17
- 425              	.set CYDEV_CHIP_REVISION_4D_PRODUCTION, 0
- 426              	.set CYDEV_CHIP_REVISION_4E_CCG2_NO_USBPD, 0
- 427              	.set CYDEV_CHIP_REVISION_4E_PRODUCTION, 0
- 428              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION, 0
- 429              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256DMA, 0
- 430              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256K, 0
- 431              	.set CYDEV_CHIP_REVISION_4G_ES, 17
- 432              	.set CYDEV_CHIP_REVISION_4G_ES2, 33
- 433              	.set CYDEV_CHIP_REVISION_4G_PRODUCTION, 17
- 434              	.set CYDEV_CHIP_REVISION_4H_PRODUCTION, 0
- 435              	.set CYDEV_CHIP_REVISION_4I_PRODUCTION, 0
- 436              	.set CYDEV_CHIP_REVISION_4J_PRODUCTION, 0
- 437              	.set CYDEV_CHIP_REVISION_4K_PRODUCTION, 0
- 438              	.set CYDEV_CHIP_REVISION_4L_PRODUCTION, 0
- 439              	.set CYDEV_CHIP_REVISION_4M_PRODUCTION, 0
- 440              	.set CYDEV_CHIP_REVISION_4N_PRODUCTION, 0
- 441              	.set CYDEV_CHIP_REVISION_4O_PRODUCTION, 0
- 442              	.set CYDEV_CHIP_REVISION_4P_PRODUCTION, 0
+ 386              	/* AnalogIn */
+ 387              	.set AnalogIn__0__INTTYPE, CYREG_PICU3_INTTYPE3
+ 388              	.set AnalogIn__0__MASK, 0x08
+ 389              	.set AnalogIn__0__PC, CYREG_PRT3_PC3
+ 390              	.set AnalogIn__0__PORT, 3
+ 391              	.set AnalogIn__0__SHIFT, 3
+ 392              	.set AnalogIn__AG, CYREG_PRT3_AG
+ 393              	.set AnalogIn__AMUX, CYREG_PRT3_AMUX
+ 394              	.set AnalogIn__BIE, CYREG_PRT3_BIE
+ 395              	.set AnalogIn__BIT_MASK, CYREG_PRT3_BIT_MASK
+ 396              	.set AnalogIn__BYP, CYREG_PRT3_BYP
+ 397              	.set AnalogIn__CTL, CYREG_PRT3_CTL
+ 398              	.set AnalogIn__DM0, CYREG_PRT3_DM0
+ 399              	.set AnalogIn__DM1, CYREG_PRT3_DM1
+ 400              	.set AnalogIn__DM2, CYREG_PRT3_DM2
+ 401              	.set AnalogIn__DR, CYREG_PRT3_DR
+ 402              	.set AnalogIn__INP_DIS, CYREG_PRT3_INP_DIS
+ 403              	.set AnalogIn__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
+ 404              	.set AnalogIn__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
+ 405              	.set AnalogIn__LCD_EN, CYREG_PRT3_LCD_EN
+ 406              	.set AnalogIn__MASK, 0x08
+ 407              	.set AnalogIn__PORT, 3
+ 408              	.set AnalogIn__PRT, CYREG_PRT3_PRT
+ 409              	.set AnalogIn__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
+ 410              	.set AnalogIn__PRTDSI__DBL_SYNC_IN, CYREG_PRT3_DBL_SYNC_IN
+ 411              	.set AnalogIn__PRTDSI__OE_SEL0, CYREG_PRT3_OE_SEL0
+ 412              	.set AnalogIn__PRTDSI__OE_SEL1, CYREG_PRT3_OE_SEL1
+ 413              	.set AnalogIn__PRTDSI__OUT_SEL0, CYREG_PRT3_OUT_SEL0
+ 414              	.set AnalogIn__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
+ 415              	.set AnalogIn__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
+ 416              	.set AnalogIn__PS, CYREG_PRT3_PS
+ 417              	.set AnalogIn__SHIFT, 3
+ 418              	.set AnalogIn__SLW, CYREG_PRT3_SLW
+ 419              	
+ 420              	/* VoltInput_CV */
+ 421              	.set VoltInput_CV__0__INTTYPE, CYREG_PICU3_INTTYPE5
+ 422              	.set VoltInput_CV__0__MASK, 0x20
+ 423              	.set VoltInput_CV__0__PC, CYREG_PRT3_PC5
+ 424              	.set VoltInput_CV__0__PORT, 3
+ 425              	.set VoltInput_CV__0__SHIFT, 5
+ 426              	.set VoltInput_CV__AG, CYREG_PRT3_AG
+ 427              	.set VoltInput_CV__AMUX, CYREG_PRT3_AMUX
+ 428              	.set VoltInput_CV__BIE, CYREG_PRT3_BIE
+ 429              	.set VoltInput_CV__BIT_MASK, CYREG_PRT3_BIT_MASK
+ 430              	.set VoltInput_CV__BYP, CYREG_PRT3_BYP
+ 431              	.set VoltInput_CV__CTL, CYREG_PRT3_CTL
+ 432              	.set VoltInput_CV__DM0, CYREG_PRT3_DM0
+ 433              	.set VoltInput_CV__DM1, CYREG_PRT3_DM1
+ 434              	.set VoltInput_CV__DM2, CYREG_PRT3_DM2
+ 435              	.set VoltInput_CV__DR, CYREG_PRT3_DR
+ 436              	.set VoltInput_CV__INP_DIS, CYREG_PRT3_INP_DIS
+ 437              	.set VoltInput_CV__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
+ 438              	.set VoltInput_CV__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
+ 439              	.set VoltInput_CV__LCD_EN, CYREG_PRT3_LCD_EN
+ 440              	.set VoltInput_CV__MASK, 0x20
+ 441              	.set VoltInput_CV__PORT, 3
+ 442              	.set VoltInput_CV__PRT, CYREG_PRT3_PRT
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 197
 
 
- 443              	.set CYDEV_CHIP_REVISION_4Q_PRODUCTION, 0
- 444              	.set CYDEV_CHIP_REVISION_4R_PRODUCTION, 0
- 445              	.set CYDEV_CHIP_REVISION_4S_PRODUCTION, 0
- 446              	.set CYDEV_CHIP_REVISION_4T_PRODUCTION, 0
- 447              	.set CYDEV_CHIP_REVISION_4U_PRODUCTION, 0
- 448              	.set CYDEV_CHIP_REVISION_4V_PRODUCTION, 0
- 449              	.set CYDEV_CHIP_REVISION_5A_ES0, 0
- 450              	.set CYDEV_CHIP_REVISION_5A_ES1, 1
- 451              	.set CYDEV_CHIP_REVISION_5A_PRODUCTION, 1
- 452              	.set CYDEV_CHIP_REVISION_5B_ES0, 0
- 453              	.set CYDEV_CHIP_REVISION_5B_PRODUCTION, 0
- 454              	.set CYDEV_CHIP_REVISION_6A_ES, 17
- 455              	.set CYDEV_CHIP_REVISION_6A_NO_UDB, 33
- 456              	.set CYDEV_CHIP_REVISION_6A_PRODUCTION, 33
- 457              	.set CYDEV_CHIP_REVISION_FM3_PRODUCTION, 0
- 458              	.set CYDEV_CHIP_REVISION_FM4_PRODUCTION, 0
- 459              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE1_PRODUCTION, 0
- 460              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE2_PRODUCTION, 0
- 461              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE3_PRODUCTION, 0
- 462              	.set CYDEV_CHIP_REVISION_USED, CYDEV_CHIP_REVISION_5B_PRODUCTION
- 463              	.set CYDEV_CHIP_REV_EXPECT, CYDEV_CHIP_REVISION_USED
- 464              	.set CYDEV_CONFIG_FASTBOOT_ENABLED, 1
- 465              	.set CYDEV_CONFIG_UNUSED_IO_AllowButWarn, 0
- 466              	.set CYDEV_CONFIG_UNUSED_IO, CYDEV_CONFIG_UNUSED_IO_AllowButWarn
- 467              	.set CYDEV_CONFIG_UNUSED_IO_AllowWithInfo, 1
- 468              	.set CYDEV_CONFIG_UNUSED_IO_Disallowed, 2
- 469              	.set CYDEV_CONFIGURATION_COMPRESSED, 0
- 470              	.set CYDEV_CONFIGURATION_DMA, 1
- 471              	.set CYDEV_CONFIGURATION_ECC, 1
- 472              	.set CYDEV_CONFIGURATION_IMOENABLED, CYDEV_CONFIG_FASTBOOT_ENABLED
- 473              	.set CYDEV_CONFIGURATION_MODE_COMPRESSED, 0
- 474              	.set CYDEV_CONFIGURATION_MODE_DMA, 2
- 475              	.set CYDEV_CONFIGURATION_MODE, CYDEV_CONFIGURATION_MODE_DMA
- 476              	.set CYDEV_CONFIGURATION_MODE_UNCOMPRESSED, 1
- 477              	.set CYDEV_DEBUG_ENABLE_MASK, 0x20
- 478              	.set CYDEV_DEBUG_ENABLE_REGISTER, CYREG_MLOGIC_DEBUG
- 479              	.set CYDEV_DEBUGGING_DPS_Disable, 3
- 480              	.set CYDEV_DEBUGGING_DPS_JTAG_4, 1
- 481              	.set CYDEV_DEBUGGING_DPS_JTAG_5, 0
- 482              	.set CYDEV_DEBUGGING_DPS_SWD, 2
- 483              	.set CYDEV_DEBUGGING_DPS, CYDEV_DEBUGGING_DPS_SWD
- 484              	.set CYDEV_DEBUGGING_DPS_SWD_SWV, 6
- 485              	.set CYDEV_DEBUGGING_ENABLE, 1
- 486              	.set CYDEV_DEBUGGING_XRES, 0
- 487              	.set CYDEV_DMA_CHANNELS_AVAILABLE, 24
- 488              	.set CYDEV_ECC_ENABLE, 0
- 489              	.set CYDEV_HEAP_SIZE, 4096
- 490              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
- 491              	.set CYDEV_INTR_RISING, 0x00000000
- 492              	.set CYDEV_IS_EXPORTING_CODE, 0
- 493              	.set CYDEV_IS_IMPORTING_CODE, 0
- 494              	.set CYDEV_PROJ_TYPE, 0
- 495              	.set CYDEV_PROJ_TYPE_BOOTLOADER, 1
- 496              	.set CYDEV_PROJ_TYPE_LAUNCHER, 5
- 497              	.set CYDEV_PROJ_TYPE_LOADABLE, 2
- 498              	.set CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER, 4
- 499              	.set CYDEV_PROJ_TYPE_MULTIAPPBOOTLOADER, 3
+ 443              	.set VoltInput_CV__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
+ 444              	.set VoltInput_CV__PRTDSI__DBL_SYNC_IN, CYREG_PRT3_DBL_SYNC_IN
+ 445              	.set VoltInput_CV__PRTDSI__OE_SEL0, CYREG_PRT3_OE_SEL0
+ 446              	.set VoltInput_CV__PRTDSI__OE_SEL1, CYREG_PRT3_OE_SEL1
+ 447              	.set VoltInput_CV__PRTDSI__OUT_SEL0, CYREG_PRT3_OUT_SEL0
+ 448              	.set VoltInput_CV__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
+ 449              	.set VoltInput_CV__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
+ 450              	.set VoltInput_CV__PS, CYREG_PRT3_PS
+ 451              	.set VoltInput_CV__SHIFT, 5
+ 452              	.set VoltInput_CV__SLW, CYREG_PRT3_SLW
+ 453              	
+ 454              	/* VoltInput_Pot */
+ 455              	.set VoltInput_Pot__0__INTTYPE, CYREG_PICU6_INTTYPE5
+ 456              	.set VoltInput_Pot__0__MASK, 0x20
+ 457              	.set VoltInput_Pot__0__PC, CYREG_PRT6_PC5
+ 458              	.set VoltInput_Pot__0__PORT, 6
+ 459              	.set VoltInput_Pot__0__SHIFT, 5
+ 460              	.set VoltInput_Pot__AG, CYREG_PRT6_AG
+ 461              	.set VoltInput_Pot__AMUX, CYREG_PRT6_AMUX
+ 462              	.set VoltInput_Pot__BIE, CYREG_PRT6_BIE
+ 463              	.set VoltInput_Pot__BIT_MASK, CYREG_PRT6_BIT_MASK
+ 464              	.set VoltInput_Pot__BYP, CYREG_PRT6_BYP
+ 465              	.set VoltInput_Pot__CTL, CYREG_PRT6_CTL
+ 466              	.set VoltInput_Pot__DM0, CYREG_PRT6_DM0
+ 467              	.set VoltInput_Pot__DM1, CYREG_PRT6_DM1
+ 468              	.set VoltInput_Pot__DM2, CYREG_PRT6_DM2
+ 469              	.set VoltInput_Pot__DR, CYREG_PRT6_DR
+ 470              	.set VoltInput_Pot__INP_DIS, CYREG_PRT6_INP_DIS
+ 471              	.set VoltInput_Pot__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU6_BASE
+ 472              	.set VoltInput_Pot__LCD_COM_SEG, CYREG_PRT6_LCD_COM_SEG
+ 473              	.set VoltInput_Pot__LCD_EN, CYREG_PRT6_LCD_EN
+ 474              	.set VoltInput_Pot__MASK, 0x20
+ 475              	.set VoltInput_Pot__PORT, 6
+ 476              	.set VoltInput_Pot__PRT, CYREG_PRT6_PRT
+ 477              	.set VoltInput_Pot__PRTDSI__CAPS_SEL, CYREG_PRT6_CAPS_SEL
+ 478              	.set VoltInput_Pot__PRTDSI__DBL_SYNC_IN, CYREG_PRT6_DBL_SYNC_IN
+ 479              	.set VoltInput_Pot__PRTDSI__OE_SEL0, CYREG_PRT6_OE_SEL0
+ 480              	.set VoltInput_Pot__PRTDSI__OE_SEL1, CYREG_PRT6_OE_SEL1
+ 481              	.set VoltInput_Pot__PRTDSI__OUT_SEL0, CYREG_PRT6_OUT_SEL0
+ 482              	.set VoltInput_Pot__PRTDSI__OUT_SEL1, CYREG_PRT6_OUT_SEL1
+ 483              	.set VoltInput_Pot__PRTDSI__SYNC_OUT, CYREG_PRT6_SYNC_OUT
+ 484              	.set VoltInput_Pot__PS, CYREG_PRT6_PS
+ 485              	.set VoltInput_Pot__SHIFT, 5
+ 486              	.set VoltInput_Pot__SLW, CYREG_PRT6_SLW
+ 487              	
+ 488              	/* Miscellaneous */
+ 489              	.set BCLK__BUS_CLK__HZ, 48000000
+ 490              	.set BCLK__BUS_CLK__KHZ, 48000
+ 491              	.set BCLK__BUS_CLK__MHZ, 48
+ 492              	.set CYDEV_CHIP_DIE_LEOPARD, 1
+ 493              	.set CYDEV_CHIP_DIE_PSOC4A, 18
+ 494              	.set CYDEV_CHIP_DIE_PSOC5LP, 2
+ 495              	.set CYDEV_CHIP_DIE_PSOC5TM, 3
+ 496              	.set CYDEV_CHIP_DIE_TMA4, 4
+ 497              	.set CYDEV_CHIP_DIE_UNKNOWN, 0
+ 498              	.set CYDEV_CHIP_FAMILY_FM0P, 5
+ 499              	.set CYDEV_CHIP_FAMILY_FM3, 6
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 198
 
 
- 500              	.set CYDEV_PROJ_TYPE_STANDARD, 0
- 501              	.set CYDEV_PROTECTION_ENABLE, 0
- 502              	.set CYDEV_STACK_SIZE, 16384
- 503              	.set CYDEV_USE_BUNDLED_CMSIS, 1
- 504              	.set CYDEV_VARIABLE_VDDA, 0
- 505              	.set CYDEV_VDDA_MV, 5000
- 506              	.set CYDEV_VDDD_MV, 5000
- 507              	.set CYDEV_VDDIO0_MV, 5000
- 508              	.set CYDEV_VDDIO1_MV, 5000
- 509              	.set CYDEV_VDDIO2_MV, 5000
- 510              	.set CYDEV_VDDIO3_MV, 5000
- 511              	.set CYDEV_VIO0_MV, 5000
- 512              	.set CYDEV_VIO1_MV, 5000
- 513              	.set CYDEV_VIO2_MV, 5000
- 514              	.set CYDEV_VIO3_MV, 5000
- 515              	.set CYIPBLOCK_ARM_CM3_VERSION, 0
- 516              	.set CYIPBLOCK_P3_ANAIF_VERSION, 0
- 517              	.set CYIPBLOCK_P3_CAN_VERSION, 0
- 518              	.set CYIPBLOCK_P3_CAPSENSE_VERSION, 0
- 519              	.set CYIPBLOCK_P3_COMP_VERSION, 0
- 520              	.set CYIPBLOCK_P3_DECIMATOR_VERSION, 0
- 521              	.set CYIPBLOCK_P3_DFB_VERSION, 0
- 522              	.set CYIPBLOCK_P3_DMA_VERSION, 0
- 523              	.set CYIPBLOCK_P3_DRQ_VERSION, 0
- 524              	.set CYIPBLOCK_P3_DSM_VERSION, 0
- 525              	.set CYIPBLOCK_P3_EMIF_VERSION, 0
- 526              	.set CYIPBLOCK_P3_I2C_VERSION, 0
- 527              	.set CYIPBLOCK_P3_LCD_VERSION, 0
- 528              	.set CYIPBLOCK_P3_LPF_VERSION, 0
- 529              	.set CYIPBLOCK_P3_OPAMP_VERSION, 0
- 530              	.set CYIPBLOCK_P3_PM_VERSION, 0
- 531              	.set CYIPBLOCK_P3_SCCT_VERSION, 0
- 532              	.set CYIPBLOCK_P3_TIMER_VERSION, 0
- 533              	.set CYIPBLOCK_P3_USB_VERSION, 0
- 534              	.set CYIPBLOCK_P3_VIDAC_VERSION, 0
- 535              	.set CYIPBLOCK_P3_VREF_VERSION, 0
- 536              	.set CYIPBLOCK_S8_GPIO_VERSION, 0
- 537              	.set CYIPBLOCK_S8_IRQ_VERSION, 0
- 538              	.set CYIPBLOCK_S8_SAR_VERSION, 0
- 539              	.set CYIPBLOCK_S8_SIO_VERSION, 0
- 540              	.set CYIPBLOCK_S8_UDB_VERSION, 0
- 541              	.set Dedicated_Output__INTTYPE, CYREG_PICU3_INTTYPE7
- 542              	.set Dedicated_Output__MASK, 0x80
- 543              	.set Dedicated_Output__PC, CYREG_PRT3_PC7
- 544              	.set Dedicated_Output__PORT, 3
- 545              	.set Dedicated_Output__SHIFT, 7
- 546              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
- 547              	.set CYDEV_BOOTLOADER_ENABLE, 0
- 548              	.endif
+ 500              	.set CYDEV_CHIP_FAMILY_FM4, 7
+ 501              	.set CYDEV_CHIP_FAMILY_PSOC3, 1
+ 502              	.set CYDEV_CHIP_FAMILY_PSOC4, 2
+ 503              	.set CYDEV_CHIP_FAMILY_PSOC5, 3
+ 504              	.set CYDEV_CHIP_FAMILY_PSOC6, 4
+ 505              	.set CYDEV_CHIP_FAMILY_UNKNOWN, 0
+ 506              	.set CYDEV_CHIP_FAMILY_USED, CYDEV_CHIP_FAMILY_PSOC5
+ 507              	.set CYDEV_CHIP_JTAG_ID, 0x2E123069
+ 508              	.set CYDEV_CHIP_MEMBER_3A, 1
+ 509              	.set CYDEV_CHIP_MEMBER_4A, 18
+ 510              	.set CYDEV_CHIP_MEMBER_4D, 13
+ 511              	.set CYDEV_CHIP_MEMBER_4E, 6
+ 512              	.set CYDEV_CHIP_MEMBER_4F, 19
+ 513              	.set CYDEV_CHIP_MEMBER_4G, 4
+ 514              	.set CYDEV_CHIP_MEMBER_4H, 17
+ 515              	.set CYDEV_CHIP_MEMBER_4I, 23
+ 516              	.set CYDEV_CHIP_MEMBER_4J, 14
+ 517              	.set CYDEV_CHIP_MEMBER_4K, 15
+ 518              	.set CYDEV_CHIP_MEMBER_4L, 22
+ 519              	.set CYDEV_CHIP_MEMBER_4M, 21
+ 520              	.set CYDEV_CHIP_MEMBER_4N, 10
+ 521              	.set CYDEV_CHIP_MEMBER_4O, 7
+ 522              	.set CYDEV_CHIP_MEMBER_4P, 20
+ 523              	.set CYDEV_CHIP_MEMBER_4Q, 12
+ 524              	.set CYDEV_CHIP_MEMBER_4R, 8
+ 525              	.set CYDEV_CHIP_MEMBER_4S, 11
+ 526              	.set CYDEV_CHIP_MEMBER_4T, 9
+ 527              	.set CYDEV_CHIP_MEMBER_4U, 5
+ 528              	.set CYDEV_CHIP_MEMBER_4V, 16
+ 529              	.set CYDEV_CHIP_MEMBER_5A, 3
+ 530              	.set CYDEV_CHIP_MEMBER_5B, 2
+ 531              	.set CYDEV_CHIP_MEMBER_6A, 24
+ 532              	.set CYDEV_CHIP_MEMBER_FM3, 28
+ 533              	.set CYDEV_CHIP_MEMBER_FM4, 29
+ 534              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE1, 25
+ 535              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE2, 26
+ 536              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE3, 27
+ 537              	.set CYDEV_CHIP_MEMBER_UNKNOWN, 0
+ 538              	.set CYDEV_CHIP_MEMBER_USED, CYDEV_CHIP_MEMBER_5B
+ 539              	.set CYDEV_CHIP_DIE_EXPECT, CYDEV_CHIP_MEMBER_USED
+ 540              	.set CYDEV_CHIP_DIE_ACTUAL, CYDEV_CHIP_DIE_EXPECT
+ 541              	.set CYDEV_CHIP_REV_LEOPARD_ES1, 0
+ 542              	.set CYDEV_CHIP_REV_LEOPARD_ES2, 1
+ 543              	.set CYDEV_CHIP_REV_LEOPARD_ES3, 3
+ 544              	.set CYDEV_CHIP_REV_LEOPARD_PRODUCTION, 3
+ 545              	.set CYDEV_CHIP_REV_PSOC4A_ES0, 17
+ 546              	.set CYDEV_CHIP_REV_PSOC4A_PRODUCTION, 17
+ 547              	.set CYDEV_CHIP_REV_PSOC5LP_ES0, 0
+ 548              	.set CYDEV_CHIP_REV_PSOC5LP_PRODUCTION, 0
+ 549              	.set CYDEV_CHIP_REV_PSOC5TM_ES0, 0
+ 550              	.set CYDEV_CHIP_REV_PSOC5TM_ES1, 1
+ 551              	.set CYDEV_CHIP_REV_PSOC5TM_PRODUCTION, 1
+ 552              	.set CYDEV_CHIP_REV_TMA4_ES, 17
+ 553              	.set CYDEV_CHIP_REV_TMA4_ES2, 33
+ 554              	.set CYDEV_CHIP_REV_TMA4_PRODUCTION, 17
+ 555              	.set CYDEV_CHIP_REVISION_3A_ES1, 0
+ 556              	.set CYDEV_CHIP_REVISION_3A_ES2, 1
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 199
+
+
+ 557              	.set CYDEV_CHIP_REVISION_3A_ES3, 3
+ 558              	.set CYDEV_CHIP_REVISION_3A_PRODUCTION, 3
+ 559              	.set CYDEV_CHIP_REVISION_4A_ES0, 17
+ 560              	.set CYDEV_CHIP_REVISION_4A_PRODUCTION, 17
+ 561              	.set CYDEV_CHIP_REVISION_4D_PRODUCTION, 0
+ 562              	.set CYDEV_CHIP_REVISION_4E_CCG2_NO_USBPD, 0
+ 563              	.set CYDEV_CHIP_REVISION_4E_PRODUCTION, 0
+ 564              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION, 0
+ 565              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256DMA, 0
+ 566              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256K, 0
+ 567              	.set CYDEV_CHIP_REVISION_4G_ES, 17
+ 568              	.set CYDEV_CHIP_REVISION_4G_ES2, 33
+ 569              	.set CYDEV_CHIP_REVISION_4G_PRODUCTION, 17
+ 570              	.set CYDEV_CHIP_REVISION_4H_PRODUCTION, 0
+ 571              	.set CYDEV_CHIP_REVISION_4I_PRODUCTION, 0
+ 572              	.set CYDEV_CHIP_REVISION_4J_PRODUCTION, 0
+ 573              	.set CYDEV_CHIP_REVISION_4K_PRODUCTION, 0
+ 574              	.set CYDEV_CHIP_REVISION_4L_PRODUCTION, 0
+ 575              	.set CYDEV_CHIP_REVISION_4M_PRODUCTION, 0
+ 576              	.set CYDEV_CHIP_REVISION_4N_PRODUCTION, 0
+ 577              	.set CYDEV_CHIP_REVISION_4O_PRODUCTION, 0
+ 578              	.set CYDEV_CHIP_REVISION_4P_PRODUCTION, 0
+ 579              	.set CYDEV_CHIP_REVISION_4Q_PRODUCTION, 0
+ 580              	.set CYDEV_CHIP_REVISION_4R_PRODUCTION, 0
+ 581              	.set CYDEV_CHIP_REVISION_4S_PRODUCTION, 0
+ 582              	.set CYDEV_CHIP_REVISION_4T_PRODUCTION, 0
+ 583              	.set CYDEV_CHIP_REVISION_4U_PRODUCTION, 0
+ 584              	.set CYDEV_CHIP_REVISION_4V_PRODUCTION, 0
+ 585              	.set CYDEV_CHIP_REVISION_5A_ES0, 0
+ 586              	.set CYDEV_CHIP_REVISION_5A_ES1, 1
+ 587              	.set CYDEV_CHIP_REVISION_5A_PRODUCTION, 1
+ 588              	.set CYDEV_CHIP_REVISION_5B_ES0, 0
+ 589              	.set CYDEV_CHIP_REVISION_5B_PRODUCTION, 0
+ 590              	.set CYDEV_CHIP_REVISION_6A_ES, 17
+ 591              	.set CYDEV_CHIP_REVISION_6A_NO_UDB, 33
+ 592              	.set CYDEV_CHIP_REVISION_6A_PRODUCTION, 33
+ 593              	.set CYDEV_CHIP_REVISION_FM3_PRODUCTION, 0
+ 594              	.set CYDEV_CHIP_REVISION_FM4_PRODUCTION, 0
+ 595              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE1_PRODUCTION, 0
+ 596              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE2_PRODUCTION, 0
+ 597              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE3_PRODUCTION, 0
+ 598              	.set CYDEV_CHIP_REVISION_USED, CYDEV_CHIP_REVISION_5B_PRODUCTION
+ 599              	.set CYDEV_CHIP_REV_EXPECT, CYDEV_CHIP_REVISION_USED
+ 600              	.set CYDEV_CONFIG_FASTBOOT_ENABLED, 1
+ 601              	.set CYDEV_CONFIG_UNUSED_IO_AllowButWarn, 0
+ 602              	.set CYDEV_CONFIG_UNUSED_IO, CYDEV_CONFIG_UNUSED_IO_AllowButWarn
+ 603              	.set CYDEV_CONFIG_UNUSED_IO_AllowWithInfo, 1
+ 604              	.set CYDEV_CONFIG_UNUSED_IO_Disallowed, 2
+ 605              	.set CYDEV_CONFIGURATION_COMPRESSED, 0
+ 606              	.set CYDEV_CONFIGURATION_DMA, 1
+ 607              	.set CYDEV_CONFIGURATION_ECC, 1
+ 608              	.set CYDEV_CONFIGURATION_IMOENABLED, CYDEV_CONFIG_FASTBOOT_ENABLED
+ 609              	.set CYDEV_CONFIGURATION_MODE_COMPRESSED, 0
+ 610              	.set CYDEV_CONFIGURATION_MODE_DMA, 2
+ 611              	.set CYDEV_CONFIGURATION_MODE, CYDEV_CONFIGURATION_MODE_DMA
+ 612              	.set CYDEV_CONFIGURATION_MODE_UNCOMPRESSED, 1
+ 613              	.set CYDEV_DEBUG_ENABLE_MASK, 0x20
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 200
+
+
+ 614              	.set CYDEV_DEBUG_ENABLE_REGISTER, CYREG_MLOGIC_DEBUG
+ 615              	.set CYDEV_DEBUGGING_DPS_Disable, 3
+ 616              	.set CYDEV_DEBUGGING_DPS_JTAG_4, 1
+ 617              	.set CYDEV_DEBUGGING_DPS_JTAG_5, 0
+ 618              	.set CYDEV_DEBUGGING_DPS_SWD, 2
+ 619              	.set CYDEV_DEBUGGING_DPS, CYDEV_DEBUGGING_DPS_SWD
+ 620              	.set CYDEV_DEBUGGING_DPS_SWD_SWV, 6
+ 621              	.set CYDEV_DEBUGGING_ENABLE, 1
+ 622              	.set CYDEV_DEBUGGING_XRES, 0
+ 623              	.set CYDEV_DMA_CHANNELS_AVAILABLE, 24
+ 624              	.set CYDEV_ECC_ENABLE, 0
+ 625              	.set CYDEV_HEAP_SIZE, 4096
+ 626              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
+ 627              	.set CYDEV_INTR_RISING, 0x00000000
+ 628              	.set CYDEV_IS_EXPORTING_CODE, 0
+ 629              	.set CYDEV_IS_IMPORTING_CODE, 0
+ 630              	.set CYDEV_PROJ_TYPE, 0
+ 631              	.set CYDEV_PROJ_TYPE_BOOTLOADER, 1
+ 632              	.set CYDEV_PROJ_TYPE_LAUNCHER, 5
+ 633              	.set CYDEV_PROJ_TYPE_LOADABLE, 2
+ 634              	.set CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER, 4
+ 635              	.set CYDEV_PROJ_TYPE_MULTIAPPBOOTLOADER, 3
+ 636              	.set CYDEV_PROJ_TYPE_STANDARD, 0
+ 637              	.set CYDEV_PROTECTION_ENABLE, 0
+ 638              	.set CYDEV_STACK_SIZE, 16384
+ 639              	.set CYDEV_USE_BUNDLED_CMSIS, 1
+ 640              	.set CYDEV_VARIABLE_VDDA, 0
+ 641              	.set CYDEV_VDDA_MV, 5000
+ 642              	.set CYDEV_VDDD_MV, 5000
+ 643              	.set CYDEV_VDDIO0_MV, 5000
+ 644              	.set CYDEV_VDDIO1_MV, 5000
+ 645              	.set CYDEV_VDDIO2_MV, 5000
+ 646              	.set CYDEV_VDDIO3_MV, 5000
+ 647              	.set CYDEV_VIO0_MV, 5000
+ 648              	.set CYDEV_VIO1_MV, 5000
+ 649              	.set CYDEV_VIO2_MV, 5000
+ 650              	.set CYDEV_VIO3_MV, 5000
+ 651              	.set CYIPBLOCK_ARM_CM3_VERSION, 0
+ 652              	.set CYIPBLOCK_P3_ANAIF_VERSION, 0
+ 653              	.set CYIPBLOCK_P3_CAN_VERSION, 0
+ 654              	.set CYIPBLOCK_P3_CAPSENSE_VERSION, 0
+ 655              	.set CYIPBLOCK_P3_COMP_VERSION, 0
+ 656              	.set CYIPBLOCK_P3_DECIMATOR_VERSION, 0
+ 657              	.set CYIPBLOCK_P3_DFB_VERSION, 0
+ 658              	.set CYIPBLOCK_P3_DMA_VERSION, 0
+ 659              	.set CYIPBLOCK_P3_DRQ_VERSION, 0
+ 660              	.set CYIPBLOCK_P3_DSM_VERSION, 0
+ 661              	.set CYIPBLOCK_P3_EMIF_VERSION, 0
+ 662              	.set CYIPBLOCK_P3_I2C_VERSION, 0
+ 663              	.set CYIPBLOCK_P3_LCD_VERSION, 0
+ 664              	.set CYIPBLOCK_P3_LPF_VERSION, 0
+ 665              	.set CYIPBLOCK_P3_OPAMP_VERSION, 0
+ 666              	.set CYIPBLOCK_P3_PM_VERSION, 0
+ 667              	.set CYIPBLOCK_P3_SCCT_VERSION, 0
+ 668              	.set CYIPBLOCK_P3_TIMER_VERSION, 0
+ 669              	.set CYIPBLOCK_P3_USB_VERSION, 0
+ 670              	.set CYIPBLOCK_P3_VIDAC_VERSION, 0
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 201
+
+
+ 671              	.set CYIPBLOCK_P3_VREF_VERSION, 0
+ 672              	.set CYIPBLOCK_S8_GPIO_VERSION, 0
+ 673              	.set CYIPBLOCK_S8_IRQ_VERSION, 0
+ 674              	.set CYIPBLOCK_S8_SAR_VERSION, 0
+ 675              	.set CYIPBLOCK_S8_SIO_VERSION, 0
+ 676              	.set CYIPBLOCK_S8_UDB_VERSION, 0
+ 677              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
+ 678              	.set CYDEV_BOOTLOADER_ENABLE, 0
+ 679              	.endif
   17              	
   18              	.syntax unified
   19              	.text
@@ -11878,9 +12018,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   22              	
   23              	/*******************************************************************************
   24              	* Function Name: CyDelayCycles
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 199
-
-
   25              	****************************************************************************//**
   26              	*
   27              	*  Delays for the specified number of cycles.
@@ -11921,6 +12058,9 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   62              	    SUBS r0, r0, #20          /*  1    2   Subtract overhead */
   63              	    LDR r1,=CYREG_CACHE_CC_CTL/*  2    2   Load flash wait cycles value */
   64              	    LDRB r1, [r1, #0]         /*  2    2  */
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
+
+
   65              	    ANDS r1, #0xC0            /*  1    2  */
   66              	
   67              	    LSRS r1, r1, #6           /*  1    2  */
@@ -11938,9 +12078,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   79              	    BPL CyDelayCycles_loop    /*  3    2  */
   80              	    NOP                       /*  1    2   Loop alignment padding */
   81              	    NOP                       /*  1    2   Loop alignment padding */
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 200
-
-
   82              	
   83              	    POP {r1}                  /*  2    2   POP r1 from stack */
   84              	CyDelayCycles_done:
@@ -11981,6 +12118,9 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  119              	*  uint8
  120              	*   Returns 0 if interrupts were previously enabled or 1 if interrupts
  121              	*   were previously disabled.
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
+
+
  122              	*
  123              	*******************************************************************************/
  124              	/* uint8 CyEnterCriticalSection(void) */
@@ -11998,9 +12138,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  136              	/*******************************************************************************
  137              	* Function Name: CyExitCriticalSection
  138              	****************************************************************************//**
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 201
-
-
  139              	*
  140              	*  CyExitCriticalSection re-enables interrupts if they were enabled before
  141              	*  CyEnterCriticalSection was called. The argument should be the value returned

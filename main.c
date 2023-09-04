@@ -61,7 +61,9 @@
 #include <device.h>
 #include "stdio.h"
 #include "stdlib.h"
-//#include "math.h"
+
+#define POT (0u)
+#define CV  (1u)
 
 /* Number of samples to be taken before averaging the ADC value */
 #define MAX_SAMPLE                  ((uint8)128)
@@ -122,7 +124,10 @@ int main(void)
     uint32 remainder = 0;
     
     /* Character array to hold the micro volts*/
-    char displayStr[15] = {'\0'};        
+    char displayStr[15] = {'\0'};
+    
+    /* variable/flag to hold status of input selection (Pot or CV) */
+    uint8_t toggleFlag = 0;
 
     CYGlobalIntEnable;
 
@@ -133,14 +138,14 @@ int main(void)
     /* Start LCD and set position */
     LCD_Start();
     LCD_Position(0,0);
-    LCD_PrintString("ADC    Step = ");
+    LCD_PrintString("Pot      Step=");
 
     /* Print mV unit on the LCD */
     LCD_Position(1,4);
     LCD_PutChar('m');
     LCD_PutChar('V');
-    LCD_Position(1,7);
-    LCD_PrintString("DAC =");
+    LCD_Position(1,8);
+    LCD_PrintString("DAC=");
     
     /* Read one sample from the ADC and initialize the filter */
     ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
@@ -161,17 +166,50 @@ int main(void)
     Opamp_Start();
     PWM_Start();
     
+    /* initialize indicator LEDs */
+    LED3_Write(toggleFlag);
+    LED4_Write(~toggleFlag);
+    
+    /* start and initialize Analog input Mux to POT as the source */
+    myMux_Start();
+    myMux_FastSelect(POT);
+    
     while(1)
     {
+        /* user interface stuff ... switch between input sources (on-board Pot vs CV input) */
+        if(SW2_Read() == 0) /* check user switch */
+        {
+            toggleFlag ^= 1; /* toggle flag if switch is pushed and update LEDs */
+            LED3_Write(toggleFlag);
+            LED4_Write(~toggleFlag);
+            
+            if(POT == toggleFlag) /* housekeeping for Pot selection */
+            {
+                LCD_Position(0,0);
+                LCD_PrintString("Pot");
+                myMux_FastSelect(POT); /* select the onboard Potentiometer as input source */
+            }
+            if(CV == toggleFlag) /* housekeeping for CV selection */
+            {
+                LCD_Position(0,0);
+                LCD_PrintString("CV ");
+                myMux_FastSelect(CV); /* select CV as input source */
+            }
+            while(0 == SW2_Read()) /* lazy man's debounce ... just wait here until switch is released */
+            ;
+            CyDelay(200); /* delay for some arbitrarily long debounce time */
+        }
+        
+        /* start the ADC conversion and wait for the result */
         ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
         result = ADC_GetResult32();
         
-        diff = abs(averageCounts - result);
+        diff = abs(averageCounts - result); /* calculate instantaneous difference to determine if abrupt change has happened */
 
-        /* If sharp change in the signal then reset the filter with the new 
-         * signal value */
+        /* If sharp change in the signal then reset the filter with the new signal value */
         if(diff > SIGNAL_SLOPE)
         {
+            /* fill the filter array with current value */
             for(i = 0; i < MAX_SAMPLE; i++)
             {
                 adcCounts[i] = result;
@@ -202,13 +240,18 @@ int main(void)
                 index = 0;
             }
         }
-        milliVolts = ADC_CountsTo_mVolts(averageCounts); /* convert ADC counts to milliVolts */
         
+        /* convert ADC counts to milliVolts */
+        milliVolts = ADC_CountsTo_mVolts(averageCounts);
+        
+        /* NotePerfect magic happens here */
         notePerfectValue = (milliVolts / NOTEPERFECT_STEP_SIZE_MV); /* calculate integer step number */
         remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV; /* use modulo to get remainder */
         if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2) /* determine if round-up is necessary */
             notePerfectValue += 1;
         PWM_WriteCompare(PWM_Lookup[notePerfectValue]); /* lookup PWM compare value and update PWM */
+        
+        /* display housekeeping */
         sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
         LCD_Position(1,12);
         LCD_PrintString(displayStr);
