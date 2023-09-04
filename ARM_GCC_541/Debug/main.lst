@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
   55 003c C409     		.short	2500
   56 003e 170A     		.short	2583
   57 0040 6B0A     		.short	2667
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 2
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 2
 
 
   58 0042 BE0A     		.short	2750
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  107 002c 25326C64 		.ascii	"%2ld\000"
  107      00
  108              		.section	.text.main,"ax",%progbits
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 3
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 3
 
 
  109              		.align	2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
   47:main.c        **** /******************************************************************************
   48:main.c        **** *                           THEORY OF OPERATION
   49:main.c        **** * This project demonstrates how ADC is used to read the input voltage at 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 4
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 4
 
 
   50:main.c        **** * it's input and display it on the LCD.
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  123              		.cfi_offset 7, -8
  124              		.cfi_offset 14, -4
  125 0002 ADF50E7D 		sub	sp, sp, #568
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 5
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 5
 
 
  126              		.cfi_def_cfa_offset 576
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  154              		.loc 1 123 0
  155 003e 0023     		movs	r3, #0
  156 0040 C7F82432 		str	r3, [r7, #548]
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 6
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 6
 
 
  124:main.c        ****     uint32 remainder = 0;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  144:main.c        ****     LCD_Position(1,4);
  191              		.loc 1 144 0
  192 007c 0421     		movs	r1, #4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 7
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 7
 
 
  193 007e 0120     		movs	r0, #1
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  157:main.c        ****     }
  158:main.c        ****     
  159:main.c        ****     /* Store sum of 128 samples*/
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 8
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 8
 
 
  160:main.c        ****     sum = result << DIV;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  182:main.c        ****             toggleFlag ^= 1; /* toggle flag if switch is pushed and update LEDs */
  265              		.loc 1 182 0
  266 011c 97F82332 		ldrb	r3, [r7, #547]
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 9
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 9
 
 
  267 0120 83F00103 		eor	r3, r3, #1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  307 0174 FFF7FEFF 		bl	myMux_FastSelect
  308              	.L14:
  197:main.c        ****             }
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 10
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 10
 
 
  198:main.c        ****             while(0 == SW2_Read()) /* lazy man's debounce ... just wait here until switch is releas
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  345 01be 97F83722 		ldrb	r2, [r7, #567]	@ zero_extendqisi2
  346 01c2 07F11003 		add	r3, r7, #16
  347 01c6 D7F81C12 		ldr	r1, [r7, #540]
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 11
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 11
 
 
  348 01ca 43F82210 		str	r1, [r3, r2, lsl #2]
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  382              		.loc 1 233 0
  383 021e D7F83032 		ldr	r3, [r7, #560]
  384 0222 DB11     		asrs	r3, r3, #7
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 12
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 12
 
 
  385 0224 C7F82C32 		str	r3, [r7, #556]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  250:main.c        ****         if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2) /* determine if round-up is necessary */
  423              		.loc 1 250 0
  424 0286 D7F81032 		ldr	r3, [r7, #528]
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 13
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 13
 
 
  425 028a 282B     		cmp	r3, #40
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  467 02e6 1846     		mov	r0, r3
  468 02e8 FFF7FEFF 		bl	LCD_PrintString
  263:main.c        ****         
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 14
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 14
 
 
  264:main.c        ****         /* Convert notePerfectValue to string and display on the LCD */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  517 0019 00000000 		.4byte	.Ldebug_ranges0+0
  518 001d 00000000 		.4byte	0
  519 0021 00000000 		.4byte	.Ldebug_line0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 15
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 15
 
 
  520 0025 02       		.uleb128 0x2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  574 0088 B5010000 		.4byte	.LASF11
  575 008c 03       		.uleb128 0x3
  576 008d D9010000 		.4byte	.LASF12
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 16
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 16
 
 
  577 0091 03       		.byte	0x3
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  631 0101 9F010000 		.4byte	.LASF39
  632 0105 01       		.byte	0x1
  633 0106 60       		.byte	0x60
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 17
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 17
 
 
  634 0107 7E000000 		.4byte	0x7e
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  688 016c 08       		.uleb128 0x8
  689 016d 00000000 		.4byte	.LASF28
  690 0171 01       		.byte	0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 18
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 18
 
 
  691 0172 75       		.byte	0x75
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  745 01d3 EB000000 		.4byte	0xeb
  746 01d7 E2010000 		.4byte	0x1e2
  747 01db 0A       		.uleb128 0xa
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 19
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 19
 
 
  748 01dc F9000000 		.4byte	0xf9
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  802 001a 03       		.uleb128 0x3
  803 001b 0E       		.uleb128 0xe
  804 001c 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 20
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 20
 
 
  805 001d 00       		.byte	0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  859 0053 01       		.uleb128 0x1
  860 0054 12       		.uleb128 0x12
  861 0055 06       		.uleb128 0x6
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 21
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 21
 
 
  862 0056 40       		.uleb128 0x40
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  916 008d 00       		.byte	0
  917 008e 00       		.byte	0
  918 008f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 22
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 22
 
 
  919 0090 34       		.uleb128 0x34
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  973              	.Ldebug_ranges0:
  974 0000 00000000 		.4byte	.LFB64
  975 0004 30030000 		.4byte	.LFE64
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 23
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 23
 
 
  976 0008 00000000 		.4byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  995      6E7400
  996              	.LASF20:
  997 0121 646F7562 		.ascii	"double\000"
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 24
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 24
 
 
  997      6C6500
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  1024              	.LASF16:
  1025 01ae 75696E74 		.ascii	"uint32\000"
  1025      333200
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 25
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 25
 
 
  1026              	.LASF11:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 1
  1055 023c 6C6F6E67 		.ascii	"long int\000"
  1055      20696E74 
  1055      00
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccON5NYo.s 			page 26
+ARM GAS  C:\Users\David\AppData\Local\Temp\cck9hSSk.s 			page 26
 
 
  1056              	.LASF31:

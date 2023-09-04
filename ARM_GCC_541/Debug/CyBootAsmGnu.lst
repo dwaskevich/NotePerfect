@@ -11652,11 +11652,11 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  337              	.set LED4__SLW, CYREG_PRT6_SLW
  338              	
  339              	/* Vout */
- 340              	.set Vout__0__INTTYPE, CYREG_PICU3_INTTYPE7
- 341              	.set Vout__0__MASK, 0x80
- 342              	.set Vout__0__PC, CYREG_PRT3_PC7
+ 340              	.set Vout__0__INTTYPE, CYREG_PICU3_INTTYPE1
+ 341              	.set Vout__0__MASK, 0x02
+ 342              	.set Vout__0__PC, CYREG_PRT3_PC1
  343              	.set Vout__0__PORT, 3
- 344              	.set Vout__0__SHIFT, 7
+ 344              	.set Vout__0__SHIFT, 1
  345              	.set Vout__AG, CYREG_PRT3_AG
  346              	.set Vout__AMUX, CYREG_PRT3_AMUX
  347              	.set Vout__BIE, CYREG_PRT3_BIE
@@ -11671,7 +11671,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  356              	.set Vout__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
  357              	.set Vout__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
  358              	.set Vout__LCD_EN, CYREG_PRT3_LCD_EN
- 359              	.set Vout__MASK, 0x80
+ 359              	.set Vout__MASK, 0x02
  360              	.set Vout__PORT, 3
  361              	.set Vout__PRT, CYREG_PRT3_PRT
  362              	.set Vout__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
@@ -11682,7 +11682,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  367              	.set Vout__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
  368              	.set Vout__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
  369              	.set Vout__PS, CYREG_PRT3_PS
- 370              	.set Vout__SHIFT, 7
+ 370              	.set Vout__SHIFT, 1
  371              	.set Vout__SLW, CYREG_PRT3_SLW
  372              	
  373              	/* Opamp */
@@ -12007,9 +12007,14 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  674              	.set CYIPBLOCK_S8_SAR_VERSION, 0
  675              	.set CYIPBLOCK_S8_SIO_VERSION, 0
  676              	.set CYIPBLOCK_S8_UDB_VERSION, 0
- 677              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
- 678              	.set CYDEV_BOOTLOADER_ENABLE, 0
- 679              	.endif
+ 677              	.set Dedicated_Output__INTTYPE, CYREG_PICU3_INTTYPE7
+ 678              	.set Dedicated_Output__MASK, 0x80
+ 679              	.set Dedicated_Output__PC, CYREG_PRT3_PC7
+ 680              	.set Dedicated_Output__PORT, 3
+ 681              	.set Dedicated_Output__SHIFT, 7
+ 682              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
+ 683              	.set CYDEV_BOOTLOADER_ENABLE, 0
+ 684              	.endif
   17              	
   18              	.syntax unified
   19              	.text
@@ -12053,14 +12058,14 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   57              	    CMP r0, #20               /*  1    2   If delay is short - jump to cycle */
   58              	    BLS CyDelayCycles_short   /*  1    2  */
   59              	    PUSH {r1}                 /*  2    2   PUSH r1 to stack */
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
+
+
   60              	    MOVS r1, #1               /*  1    2  */
   61              	
   62              	    SUBS r0, r0, #20          /*  1    2   Subtract overhead */
   63              	    LDR r1,=CYREG_CACHE_CC_CTL/*  2    2   Load flash wait cycles value */
   64              	    LDRB r1, [r1, #0]         /*  2    2  */
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
-
-
   65              	    ANDS r1, #0xC0            /*  1    2  */
   66              	
   67              	    LSRS r1, r1, #6           /*  1    2  */
@@ -12113,14 +12118,14 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  114              	*  atomic; this is true for both PSoC 3 and PSoC 5. Therefore, to avoid
  115              	*  corrupting processor state, it must be the policy that all interrupt routines
  116              	*  restore the interrupt enable bits as they were found on entry.
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
+
+
  117              	*
  118              	* \return
  119              	*  uint8
  120              	*   Returns 0 if interrupts were previously enabled or 1 if interrupts
  121              	*   were previously disabled.
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
-
-
  122              	*
  123              	*******************************************************************************/
  124              	/* uint8 CyEnterCriticalSection(void) */
