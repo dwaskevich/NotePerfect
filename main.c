@@ -121,6 +121,7 @@ int main(void)
     
     /* Variables to calculate and hold NotePerfect DAC value */
     uint32 notePerfectValue = 0;
+    uint32 previousNotePerfectValue = 0;
     uint32 remainder = 0;
     
     /* Character array to hold the micro volts*/
@@ -226,8 +227,7 @@ int main(void)
         /* Get moving average */
         else
         {
-            /* Remove the oldest element and add new sample to sum and get 
-             * the average */
+            /* Remove the oldest element and add new sample to sum and get the average */
             sum = sum - adcCounts[index];
             sum = sum + result;
             averageCounts = sum >> DIV;
@@ -249,23 +249,28 @@ int main(void)
         remainder = milliVolts % NOTEPERFECT_STEP_SIZE_MV; /* use modulo to get remainder */
         if(remainder >= NOTEPERFECT_STEP_SIZE_MV/2) /* determine if round-up is necessary */
             notePerfectValue += 1;
-        PWM_WriteCompare(PWM_Lookup[notePerfectValue]); /* lookup PWM compare value and update PWM */
         
-        /* display housekeeping */
-        sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
-        LCD_Position(1,12);
-        LCD_PrintString(displayStr);
+        if(notePerfectValue != previousNotePerfectValue) /* only spend time if notePerfect step value has changed */
+        {
+            PWM_WriteCompare(PWM_Lookup[notePerfectValue]); /* lookup PWM compare value and update PWM */
+            
+            /* display housekeeping */
+            sprintf(displayStr,"%4d", PWM_Lookup[notePerfectValue]);
+            LCD_Position(1,12);
+            LCD_PrintString(displayStr);   
+            
+            /* Convert notePerfectValue to string and display on the LCD */
+            sprintf(displayStr,"%2ld", notePerfectValue);
+            LCD_Position(0,14);
+            LCD_PrintString(displayStr);
+            
+            previousNotePerfectValue = notePerfectValue;
+        }
             
         /* Convert milli volts to string and display on the LCD */
         sprintf(displayStr,"%4ld",milliVolts);
         LCD_Position(1,0);
         LCD_PrintString(displayStr);
-        
-        /* Convert notePerfectValue to string and display on the LCD */
-        sprintf(displayStr,"%2ld", notePerfectValue);
-        LCD_Position(0,14);
-        LCD_PrintString(displayStr);
-        
     }	
 }
 
